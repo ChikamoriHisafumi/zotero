@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="common.css">
+<link href="https://fonts.googleapis.com/earlyaccess/hannari.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Sawarabi+Mincho" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.css">
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<!-- jQuery UI -->
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+<script src="common.js"></script>
+<title>リファレンス自動生成します。</title>
+</head>
+<body>
+
+	<div id="container_index">
+		<div id="proc_01">
+			<div class="SM_BIG">リファレンス自動生成します。</div>
+			<div class="SM" style="text-decoration-line: line-through;">1.Zoteroからエクスポートしたファイルを選択してください（CSVの加工は不要です）。</div>
+			<div class="SM_080">（CSVだと、このHTMLのあるディレクトリにCSVを置かないといけないようなので、やめました）</div>
+			<div class="SM">1.ダウンロードしたCSVをテキストファイルで開いたときの中身をすべてコピーし、下のテキストボックスに貼り付けてください。</div>
+			<!-- 			<div id="file_path"> -->
+			<!-- 				<input type="file" id="file"> -->
+			<!-- 			</div> -->
+			<div>
+				<textarea id="data_in_csv"></textarea>
+			</div>
+
+		</div>
+		<div id="proc_02">
+			<div class="SM">2.CSVを読み込みました。順番を並べ替えたり、接頭辞・接尾辞・カンマなどが必要であればつけ、太字・斜体・下線が必要であればチェックを入れ、オリジナルタグによりフィルタリングなどを行ってください。提出先を変更すれば、フォーマットも変わります。</div>
+			<table id="sortable-table">
+				<tbody>
+					<tr id="tr_01">
+						<td><label for="show_01"><input type="checkbox" id="show_01">表示する</label></td>
+						<td><input type="text" name="prefix_01" value="" placeholder="接頭辞"></td>
+						<td>Publication Year</td>
+						<td><input type="text" name="suffix_01" value="" placeholder="接尾辞"></td>
+						<td><input type="text" name="delimiter_01" value=" " placeholder="カンマ等"></td>
+						<td><label for="bold_01"><input type="checkbox" id="bold_01">太字</label></td>
+						<td><label for="italic_01"><input type="checkbox" id="italic_01">斜体</label></td>
+						<td><label for="underline_01"><input type="checkbox" id="underline_01">下線</label></td>
+						<td></td>
+					</tr>
+					<tr id="tr_02">
+						<td><label for="show_02"><input type="checkbox" id="show_02" checked>表示する</label></td>
+						<td><input type="text" name="prefix_02" value="" placeholder="接頭辞"></td>
+						<td>Author</td>
+						<td><input type="text" name="suffix_02" value="" placeholder="接尾辞"></td>
+						<td><input type="text" name="delimiter_02" value=" " placeholder="カンマ等"></td>
+						<td><label for="bold_02"><input type="checkbox" id="bold_02">太字</label></td>
+						<td><label for="italic_02"><input type="checkbox" id="italic_02">斜体</label></td>
+						<td><label for="underline_02"><input type="checkbox" id="underline_02">下線</label></td>
+						<td></td>
+					</tr>
+					<tr id="tr_03">
+						<td><label for="show_03"><input type="checkbox" id="show_03" checked>表示する</label></td>
+						<td><input type="text" name="prefix_03" value="" placeholder="接頭辞"></td>
+						<td>Title</td>
+						<td><input type="text" name="suffix_03" value="" placeholder="接尾辞"></td>
+						<td><input type="text" name="delimiter_03" value=" " placeholder="カンマ等"></td>
+						<td><label for="bold_03"><input type="checkbox" id="bold_03">太字</label></td>
+						<td><label for="italic_03"><input type="checkbox" id="italic_03">斜体</label></td>
+						<td><label for="underline_03"><input type="checkbox" id="underline_03">下線</label></td>
+						<td></td>
+					</tr>
+					<tr id="tr_04">
+						<td><label for="show_04"><input type="checkbox" id="show_04">表示する</label></td>
+						<td><input type="text" name="prefix_04" value="" placeholder="接頭辞"></td>
+						<td>Publication Title</td>
+						<td><input type="text" name="suffix_04" value="" placeholder="接尾辞"></td>
+						<td><input type="text" name="delimiter_04" value=" " placeholder="カンマ等"></td>
+						<td><label for="bold_04"><input type="checkbox" id="bold_04">太字</label></td>
+						<td><label for="italic_04"><input type="checkbox" id="italic_04">斜体</label></td>
+						<td><label for="underline_04"><input type="checkbox" id="underline_04">下線</label></td>
+						<td></td>
+					</tr>
+					<tr id="tr_05">
+						<td><label for="show_05"><input type="checkbox" id="show_05">表示する</label></td>
+						<td><input type="text" name="prefix_05" value="" placeholder="接頭辞"></td>
+						<td>DOI</td>
+						<td><input type="text" name="suffix_05" value="" placeholder="接尾辞"></td>
+						<td><input type="text" name="delimiter_05" value=" " placeholder="カンマ等"></td>
+						<td><label for="bold_05"><input type="checkbox" id="bold_05">太字</label></td>
+						<td><label for="italic_05"><input type="checkbox" id="italic_05">斜体</label></td>
+						<td><label for="underline_05"><input type="checkbox" id="underline_05">下線</label></td>
+						<td></td>
+					</tr>
+					<tr id="tr_06">
+						<td><label for="show_06"><input type="checkbox" id="show_06">表示する</label></td>
+						<td><input type="text" name="prefix_06" value="" placeholder="接頭辞"></td>
+						<td>URL</td>
+						<td><input type="text" name="suffix_06" value="" placeholder="接尾辞"></td>
+						<td><input type="text" name="delimiter_06" value=" " placeholder="カンマ等"></td>
+						<td><label for="bold_06"><input type="checkbox" id="bold_06">太字</label></td>
+						<td><label for="italic_06"><input type="checkbox" id="italic_06">斜体</label></td>
+						<td><label for="underline_06"><input type="checkbox" id="underline_06">下線</label></td>
+						<td></td>
+					</tr>
+					<tr id="tr_07">
+						<td><label for="show_07"><input type="checkbox" id="show_07">表示する</label></td>
+						<td><input type="text" name="prefix_07" value="" placeholder="接頭辞"></td>
+						<td>Pages</td>
+						<td><input type="text" name="suffix_07" value="" placeholder="接尾辞"></td>
+						<td><input type="text" name="delimiter_07" value=" " placeholder="カンマ等"></td>
+						<td><label for="bold_07"><input type="checkbox" id="bold_07">太字</label></td>
+						<td><label for="italic_07"><input type="checkbox" id="italic_07">斜体</label></td>
+						<td><label for="underline_07"><input type="checkbox" id="underline_07">下線</label></td>
+						<td></td>
+					</tr>
+					<tr id="tr_08">
+						<td><label for="show_08"><input type="checkbox" id="show_08">表示する</label></td>
+						<td><input type="text" name="prefix_08" value="" placeholder="接頭辞"></td>
+						<td>Volume</td>
+						<td><input type="text" name="suffix_08" value="" placeholder="接尾辞"></td>
+						<td><input type="text" name="delimiter_08" value=" " placeholder="カンマ等"></td>
+						<td><label for="bold_08"><input type="checkbox" id="bold_08">太字</label></td>
+						<td><label for="italic_08"><input type="checkbox" id="italic_08">斜体</label></td>
+						<td><label for="underline_08"><input type="checkbox" id="underline_08">下線</label></td>
+						<td></td>
+					</tr>
+					<tr id="tr_09">
+						<td><label for="show_09"><input type="checkbox" id="show_09">表示する</label></td>
+						<td><input type="text" name="prefix_09" value="" placeholder="接頭辞"></td>
+						<td>Journal Abbreviation</td>
+						<td><input type="text" name="suffix_09" value="" placeholder="接尾辞"></td>
+						<td><input type="text" name="delimiter_09" value=" " placeholder="カンマ等"></td>
+						<td><label for="bold_09"><input type="checkbox" id="bold_09">太字</label></td>
+						<td><label for="italic_09"><input type="checkbox" id="italic_09">斜体</label></td>
+						<td><label for="underline_09"><input type="checkbox" id="underline_09">下線</label></td>
+						<td></td>
+					</tr>
+					<tr id="tr_10">
+						<td><label for="show_10"><input type="checkbox" id="show_10">表示する</label></td>
+						<td><input type="text" name="prefix_10" value="" placeholder="接頭辞"></td>
+						<td>Extra</td>
+						<td><input type="text" name="suffix_10" value="" placeholder="接尾辞"></td>
+						<td><input type="text" name="delimiter_10" value=" " placeholder="カンマ等"></td>
+						<td><label for="bold_10"><input type="checkbox" id="bold_10">太字</label></td>
+						<td><label for="italic_10"><input type="checkbox" id="italic_10">斜体</label></td>
+						<td><label for="underline_10"><input type="checkbox" id="underline_10">下線</label></td>
+						<td></td>
+					</tr>
+				</tbody>
+			</table>
+			<div id="manual_tags"></div>
+			<div id="final"></div>
+		</div>
+		<div id="error"></div>
+
+
+	</div>
+
+</body>
+</html>
