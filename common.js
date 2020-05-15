@@ -167,7 +167,7 @@ function main() {
 		show_07 = $('#show_07').prop('checked');
 		show_08 = $('#show_08').prop('checked');
 		show_09 = $('#show_09').prop('checked');
-		show_10 = $('#show_09').prop('checked');
+		show_10 = $('#show_10').prop('checked');
 
 		bold_01 = $('#bold_01').prop('checked');
 		bold_02 = $('#bold_02').prop('checked');
@@ -178,7 +178,7 @@ function main() {
 		bold_07 = $('#bold_07').prop('checked');
 		bold_08 = $('#bold_08').prop('checked');
 		bold_09 = $('#bold_09').prop('checked');
-		bold_10 = $('#bold_09').prop('checked');
+		bold_10 = $('#bold_10').prop('checked');
 
 		italic_01 = $('#italic_01').prop('checked');
 		italic_02 = $('#italic_02').prop('checked');
@@ -189,7 +189,7 @@ function main() {
 		italic_07 = $('#italic_07').prop('checked');
 		italic_08 = $('#italic_08').prop('checked');
 		italic_09 = $('#italic_09').prop('checked');
-		italic_10 = $('#italic_09').prop('checked');
+		italic_10 = $('#italic_10').prop('checked');
 
 		underline_01 = $('#underline_01').prop('checked');
 		underline_02 = $('#underline_02').prop('checked');
@@ -200,7 +200,7 @@ function main() {
 		underline_07 = $('#underline_07').prop('checked');
 		underline_08 = $('#underline_08').prop('checked');
 		underline_09 = $('#underline_09').prop('checked');
-		underline_10 = $('#underline_09').prop('checked');
+		underline_10 = $('#underline_10').prop('checked');
 
 		prefix_01 = $('[name="prefix_01"]').val();
 		prefix_02 = $('[name="prefix_02"]').val();
@@ -211,7 +211,7 @@ function main() {
 		prefix_07 = $('[name="prefix_07"]').val();
 		prefix_08 = $('[name="prefix_08"]').val();
 		prefix_09 = $('[name="prefix_09"]').val();
-		prefix_10 = $('[name="prefix_09"]').val();
+		prefix_10 = $('[name="prefix_10"]').val();
 
 		suffix_01 = $('[name="suffix_01"]').val();
 		suffix_02 = $('[name="suffix_02"]').val();
@@ -222,7 +222,7 @@ function main() {
 		suffix_07 = $('[name="suffix_07"]').val();
 		suffix_08 = $('[name="suffix_08"]').val();
 		suffix_09 = $('[name="suffix_09"]').val();
-		suffix_10 = $('[name="suffix_09"]').val();
+		suffix_10 = $('[name="suffix_10"]').val();
 
 		delimiter_01 = $('[name="delimiter_01"]').val();
 		delimiter_02 = $('[name="delimiter_02"]').val();
@@ -233,7 +233,7 @@ function main() {
 		delimiter_07 = $('[name="delimiter_07"]').val();
 		delimiter_08 = $('[name="delimiter_08"]').val();
 		delimiter_09 = $('[name="delimiter_09"]').val();
-		delimiter_10 = $('[name="delimiter_09"]').val();
+		delimiter_10 = $('[name="delimiter_10"]').val();
 
 		// console.log(manual_tags.join('; '));
 
