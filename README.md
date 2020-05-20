@@ -28,7 +28,7 @@ https://www.youtube.com/watch?v=Zoz6ZWiksbw
 
 # 開発者メモ
 
-Zoteroデスクトップ版では重複に注意すること。
+（１）Zoteroデスクトップ版では重複に注意すること。
 
 インポートをしていると知らないうちに重複がどんどん増えていき、コレクションを削除するときにも「Delete collection」（正しくは「Delete Collection and Items」）を選択してしまうと、Trashがとんでもない量のレコードで溢れているなんてこともある。
 
@@ -46,4 +46,4 @@ zotero.sqlite-journal
 
 Zoteroのエクスポート、インポートは今の所Zotero RDFフォーマットで成功している。今のところは、これでやるのが無難か。
 
-
+（２）XMLの編集知識のある方の場合は、Exportする際は、Zoter RDFが好ましい。
