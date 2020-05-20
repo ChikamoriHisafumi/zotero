@@ -18,6 +18,10 @@ https://www.youtube.com/watch?v=t5rndVL7goU
 
 https://www.youtube.com/watch?v=Zoz6ZWiksbw
 
+（４）タグの付け方
+
+https://www.youtube.com/watch?v=noYxEoyusUc
+
 お手数おかけしますが、ご視聴の上利用方法をご理解いただけますと幸いです。
 
 今後のバージョンアップに際して、皆さんからのフィードバックが必要ですので、適宜メールなどでお願いします。
