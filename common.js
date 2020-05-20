@@ -18,6 +18,7 @@ function main() {
 		pos_Publication_Title = -1;
 		pos_DOI = -1;
 		pos_URL = -1;
+		pos_Date = -1;
 		pos_Pages = -1;
 		pos_Volume = -1;
 		pos_Journal_Abbreviation = -1;
@@ -94,6 +95,12 @@ function main() {
 
 			break;
 
+		case 'Date':
+
+			pos_Date = i;
+
+			break;
+
 		case 'Pages':
 
 			pos_Pages = i;
@@ -134,6 +141,7 @@ function main() {
 		Publication_Title = [];
 		DOI = [];
 		Url = [];
+		Date = [];
 		Pages = [];
 		Volume = [];
 		Journal_Abbreviation = [];
@@ -145,12 +153,13 @@ function main() {
 
 			Manual_Tags.push(columns[pos_Manual_Tags]);
 
-			Publication_Year.push(columns[pos_Manual_Tags]);
+			Publication_Year.push(columns[pos_Publication_Year]);
 			Author.push(columns[pos_Author]);
 			Title.push(columns[pos_Title]);
 			Publication_Title.push(columns[pos_Publication_Title]);
 			DOI.push(columns[pos_DOI]);
 			Url.push(columns[pos_URL]);
+			Date.push(columns[pos_Date]);
 			Pages.push(columns[pos_Pages]);
 			Volume.push(columns[pos_Volume]);
 			Journal_Abbreviation.push(columns[pos_Journal_Abbreviation]);
@@ -158,82 +167,131 @@ function main() {
 
 		}
 
-		show_01 = $('#show_01').prop('checked');
-		show_02 = $('#show_02').prop('checked');
-		show_03 = $('#show_03').prop('checked');
-		show_04 = $('#show_04').prop('checked');
-		show_05 = $('#show_05').prop('checked');
-		show_06 = $('#show_06').prop('checked');
-		show_07 = $('#show_07').prop('checked');
-		show_08 = $('#show_08').prop('checked');
-		show_09 = $('#show_09').prop('checked');
-		show_10 = $('#show_10').prop('checked');
+		$('[id^="show_"]').each(function(index, element) {
 
-		bold_01 = $('#bold_01').prop('checked');
-		bold_02 = $('#bold_02').prop('checked');
-		bold_03 = $('#bold_03').prop('checked');
-		bold_04 = $('#bold_04').prop('checked');
-		bold_05 = $('#bold_05').prop('checked');
-		bold_06 = $('#bold_06').prop('checked');
-		bold_07 = $('#bold_07').prop('checked');
-		bold_08 = $('#bold_08').prop('checked');
-		bold_09 = $('#bold_09').prop('checked');
-		bold_10 = $('#bold_10').prop('checked');
+			var tr_num = parseInt($(this).attr('id').split('_')[1]);
+			show[tr_num] = $(this).prop('checked');
 
-		italic_01 = $('#italic_01').prop('checked');
-		italic_02 = $('#italic_02').prop('checked');
-		italic_03 = $('#italic_03').prop('checked');
-		italic_04 = $('#italic_04').prop('checked');
-		italic_05 = $('#italic_05').prop('checked');
-		italic_06 = $('#italic_06').prop('checked');
-		italic_07 = $('#italic_07').prop('checked');
-		italic_08 = $('#italic_08').prop('checked');
-		italic_09 = $('#italic_09').prop('checked');
-		italic_10 = $('#italic_10').prop('checked');
+		});
 
-		underline_01 = $('#underline_01').prop('checked');
-		underline_02 = $('#underline_02').prop('checked');
-		underline_03 = $('#underline_03').prop('checked');
-		underline_04 = $('#underline_04').prop('checked');
-		underline_05 = $('#underline_05').prop('checked');
-		underline_06 = $('#underline_06').prop('checked');
-		underline_07 = $('#underline_07').prop('checked');
-		underline_08 = $('#underline_08').prop('checked');
-		underline_09 = $('#underline_09').prop('checked');
-		underline_10 = $('#underline_10').prop('checked');
+		$('[id^="bold_"]').each(function(index, element) {
 
-		prefix_01 = $('[name="prefix_01"]').val();
-		prefix_02 = $('[name="prefix_02"]').val();
-		prefix_03 = $('[name="prefix_03"]').val();
-		prefix_04 = $('[name="prefix_04"]').val();
-		prefix_05 = $('[name="prefix_05"]').val();
-		prefix_06 = $('[name="prefix_06"]').val();
-		prefix_07 = $('[name="prefix_07"]').val();
-		prefix_08 = $('[name="prefix_08"]').val();
-		prefix_09 = $('[name="prefix_09"]').val();
-		prefix_10 = $('[name="prefix_10"]').val();
+			var tr_num = parseInt($(this).attr('id').split('_')[1]);
+			bold[tr_num] = $(this).prop('checked');
 
-		suffix_01 = $('[name="suffix_01"]').val();
-		suffix_02 = $('[name="suffix_02"]').val();
-		suffix_03 = $('[name="suffix_03"]').val();
-		suffix_04 = $('[name="suffix_04"]').val();
-		suffix_05 = $('[name="suffix_05"]').val();
-		suffix_06 = $('[name="suffix_06"]').val();
-		suffix_07 = $('[name="suffix_07"]').val();
-		suffix_08 = $('[name="suffix_08"]').val();
-		suffix_09 = $('[name="suffix_09"]').val();
-		suffix_10 = $('[name="suffix_10"]').val();
+		});
 
-		delimiter_01 = $('[name="delimiter_01"]').val();
-		delimiter_02 = $('[name="delimiter_02"]').val();
-		delimiter_03 = $('[name="delimiter_03"]').val();
-		delimiter_04 = $('[name="delimiter_04"]').val();
-		delimiter_05 = $('[name="delimiter_05"]').val();
-		delimiter_06 = $('[name="delimiter_06"]').val();
-		delimiter_07 = $('[name="delimiter_07"]').val();
-		delimiter_08 = $('[name="delimiter_08"]').val();
-		delimiter_09 = $('[name="delimiter_09"]').val();
-		delimiter_10 = $('[name="delimiter_10"]').val();
+		$('[id^="italic_"]').each(function(index, element) {
+
+			var tr_num = parseInt($(this).attr('id').split('_')[1]);
+			italic[tr_num] = $(this).prop('checked');
+
+		});
+
+		$('[id^="underline_"]').each(function(index, element) {
+
+			var tr_num = parseInt($(this).attr('id').split('_')[1]);
+			underline[tr_num] = $(this).prop('checked');
+
+		});
+
+		$('[name^="prefix_"]').each(function(index, element) {
+
+			var tr_num = parseInt($(this).attr('name').split('_')[1]);
+			prefix[tr_num] = $(this).val();
+
+		});
+
+		$('[name^="suffix_"]').each(function(index, element) {
+
+			var tr_num = parseInt($(this).attr('name').split('_')[1]);
+			suffix[tr_num] = $(this).val();
+
+		});
+
+		$('[name^="delimiter_"]').each(function(index, element) {
+
+			var tr_num = parseInt($(this).attr('name').split('_')[1]);
+			delimiter[tr_num] = $(this).val();
+
+		});
+
+		// show_01 = $('#show_01').prop('checked');
+		// show_02 = $('#show_02').prop('checked');
+		// show_03 = $('#show_03').prop('checked');
+		// show_04 = $('#show_04').prop('checked');
+		// show_05 = $('#show_05').prop('checked');
+		// show_06 = $('#show_06').prop('checked');
+		// show_07 = $('#show_07').prop('checked');
+		// show_08 = $('#show_08').prop('checked');
+		// show_09 = $('#show_09').prop('checked');
+		// show_10 = $('#show_10').prop('checked');
+
+		// bold_01 = $('#bold_01').prop('checked');
+		// bold_02 = $('#bold_02').prop('checked');
+		// bold_03 = $('#bold_03').prop('checked');
+		// bold_04 = $('#bold_04').prop('checked');
+		// bold_05 = $('#bold_05').prop('checked');
+		// bold_06 = $('#bold_06').prop('checked');
+		// bold_07 = $('#bold_07').prop('checked');
+		// bold_08 = $('#bold_08').prop('checked');
+		// bold_09 = $('#bold_09').prop('checked');
+		// bold_10 = $('#bold_10').prop('checked');
+		//
+		// italic_01 = $('#italic_01').prop('checked');
+		// italic_02 = $('#italic_02').prop('checked');
+		// italic_03 = $('#italic_03').prop('checked');
+		// italic_04 = $('#italic_04').prop('checked');
+		// italic_05 = $('#italic_05').prop('checked');
+		// italic_06 = $('#italic_06').prop('checked');
+		// italic_07 = $('#italic_07').prop('checked');
+		// italic_08 = $('#italic_08').prop('checked');
+		// italic_09 = $('#italic_09').prop('checked');
+		// italic_10 = $('#italic_10').prop('checked');
+		//
+		// underline_01 = $('#underline_01').prop('checked');
+		// underline_02 = $('#underline_02').prop('checked');
+		// underline_03 = $('#underline_03').prop('checked');
+		// underline_04 = $('#underline_04').prop('checked');
+		// underline_05 = $('#underline_05').prop('checked');
+		// underline_06 = $('#underline_06').prop('checked');
+		// underline_07 = $('#underline_07').prop('checked');
+		// underline_08 = $('#underline_08').prop('checked');
+		// underline_09 = $('#underline_09').prop('checked');
+		// underline_10 = $('#underline_10').prop('checked');
+		//
+		// prefix_01 = $('[name="prefix_01"]').val();
+		// prefix_02 = $('[name="prefix_02"]').val();
+		// prefix_03 = $('[name="prefix_03"]').val();
+		// prefix_04 = $('[name="prefix_04"]').val();
+		// prefix_05 = $('[name="prefix_05"]').val();
+		// prefix_06 = $('[name="prefix_06"]').val();
+		// prefix_07 = $('[name="prefix_07"]').val();
+		// prefix_08 = $('[name="prefix_08"]').val();
+		// prefix_09 = $('[name="prefix_09"]').val();
+		// prefix_10 = $('[name="prefix_10"]').val();
+		//
+		// suffix_01 = $('[name="suffix_01"]').val();
+		// suffix_02 = $('[name="suffix_02"]').val();
+		// suffix_03 = $('[name="suffix_03"]').val();
+		// suffix_04 = $('[name="suffix_04"]').val();
+		// suffix_05 = $('[name="suffix_05"]').val();
+		// suffix_06 = $('[name="suffix_06"]').val();
+		// suffix_07 = $('[name="suffix_07"]').val();
+		// suffix_08 = $('[name="suffix_08"]').val();
+		// suffix_09 = $('[name="suffix_09"]').val();
+		// suffix_10 = $('[name="suffix_10"]').val();
+		//
+		// delimiter_01 = $('[name="delimiter_01"]').val();
+		// delimiter_02 = $('[name="delimiter_02"]').val();
+		// delimiter_03 = $('[name="delimiter_03"]').val();
+		// delimiter_04 = $('[name="delimiter_04"]').val();
+		// delimiter_05 = $('[name="delimiter_05"]').val();
+		// delimiter_06 = $('[name="delimiter_06"]').val();
+		// delimiter_07 = $('[name="delimiter_07"]').val();
+		// delimiter_08 = $('[name="delimiter_08"]').val();
+		// delimiter_09 = $('[name="delimiter_09"]').val();
+		// delimiter_10 = $('[name="delimiter_10"]').val();
 
 		// console.log(manual_tags.join('; '));
 
@@ -257,7 +315,7 @@ function main() {
 		// このFor文だと、フォーマッターが働かないみたい。仕方なく別のFor文に変更。
 		// for(let v of set_Manual_Tags.values()){
 
-		let array_Manual_Tags = Array.from(set_Manual_Tags.values());
+		let array_Manual_Tags = Array.from(set_Manual_Tags.values()).sort();
 
 		// console.log(array_Manual_Tags);
 
@@ -573,7 +631,7 @@ $(function() {
 		//
 		// });
 
-		console.log(chk_tags);
+		cl(chk_tags, 1);
 
 		main();
 
@@ -585,7 +643,7 @@ $(function() {
 		update : function() {
 			alignment = $(this).sortable("toArray");
 
-			console.log(alignment);
+			cl('alignment = ' + alignment);
 
 			main();
 
@@ -598,296 +656,394 @@ $(function() {
 function generateAlignedReference(tr_xx, i) {
 
 	var ret = '';
+	var column = '';
+	var tr_num = parseInt(tr_xx.split('_')[1]);
 
 	switch (tr_xx) {
 
 	case 'tr_01':
 
-		if (show_01) {
-
-			ret += prefix_01 + Publication_Year[i] + suffix_01 + delimiter_01;
-
-			if (bold_01) {
-
-				ret = '<b>' + ret + '</b>';
-
-			}
-
-			if (italic_01) {
-
-				ret = '<i>' + ret + '</i>';
-
-			}
-
-			if (underline_01) {
-
-				ret = '<u>' + ret + '</u>';
-
-			}
-
-		}
+		column = Publication_Year[i];
 
 		break;
 
 	case 'tr_02':
 
-		if (show_02) {
-
-			ret += prefix_02 + Author[i] + suffix_02 + delimiter_02;
-
-			if (bold_02) {
-
-				ret = '<b>' + ret + '</b>';
-
-			}
-
-			if (italic_02) {
-
-				ret = '<i>' + ret + '</i>';
-
-			}
-
-			if (underline_02) {
-
-				ret = '<u>' + ret + '</u>';
-
-			}
-
-		}
+		column = Author[i];
 
 		break;
 
 	case 'tr_03':
 
-		if (show_03) {
-
-			ret += prefix_03 + Title[i] + suffix_03 + delimiter_03;
-
-			if (bold_03) {
-
-				ret = '<b>' + ret + '</b>';
-
-			}
-
-			if (italic_03) {
-
-				ret = '<i>' + ret + '</i>';
-
-			}
-
-			if (underline_03) {
-
-				ret = '<u>' + ret + '</u>';
-
-			}
-
-		}
+		column = Title[i];
 
 		break;
 
 	case 'tr_04':
 
-		if (show_04) {
-
-			ret += prefix_04 + Publication_Title[i] + suffix_04 + delimiter_04;
-
-			if (bold_04) {
-
-				ret = '<b>' + ret + '</b>';
-
-			}
-
-			if (italic_04) {
-
-				ret = '<i>' + ret + '</i>';
-
-			}
-
-			if (underline_04) {
-
-				ret = '<u>' + ret + '</u>';
-
-			}
-
-		}
+		column = Publication_Title[i];
 
 		break;
 
 	case 'tr_05':
 
-		if (show_05) {
-
-			ret += prefix_05 + DOI[i] + suffix_05 + delimiter_05;
-
-			if (bold_05) {
-
-				ret = '<b>' + ret + '</b>';
-
-			}
-
-			if (italic_05) {
-
-				ret = '<i>' + ret + '</i>';
-
-			}
-
-			if (underline_05) {
-
-				ret = '<u>' + ret + '</u>';
-
-			}
-
-		}
+		column = DOI[i];
 
 		break;
 
 	case 'tr_06':
 
-		if (show_06) {
-
-			ret += prefix_06 + Url[i] + suffix_06 + delimiter_06;
-
-			if (bold_06) {
-
-				ret = '<b>' + ret + '</b>';
-
-			}
-
-			if (italic_06) {
-
-				ret = '<i>' + ret + '</i>';
-
-			}
-
-			if (underline_06) {
-
-				ret = '<u>' + ret + '</u>';
-
-			}
-
-		}
+		column = Url[i];
 
 		break;
 
 	case 'tr_07':
 
-		if (show_07) {
-
-			ret += prefix_06 + Pages[i] + suffix_07 + delimiter_07;
-
-			if (bold_07) {
-
-				ret = '<b>' + ret + '</b>';
-
-			}
-
-			if (italic_07) {
-
-				ret = '<i>' + ret + '</i>';
-
-			}
-
-			if (underline_07) {
-
-				ret = '<u>' + ret + '</u>';
-
-			}
-
-		}
+		column = Date[i];
 
 		break;
 
 	case 'tr_08':
 
-		if (show_08) {
-
-			ret += prefix_06 + Volume[i] + suffix_08 + delimiter_08;
-
-			if (bold_08) {
-
-				ret = '<b>' + ret + '</b>';
-
-			}
-
-			if (italic_08) {
-
-				ret = '<i>' + ret + '</i>';
-
-			}
-
-			if (underline_08) {
-
-				ret = '<u>' + ret + '</u>';
-
-			}
-
-		}
+		column = Pages[i];
 
 		break;
 
 	case 'tr_09':
 
-		if (show_09) {
-
-			ret += prefix_06 + Journal_Abbreviation[i] + suffix_09 + delimiter_09;
-
-			if (bold_09) {
-
-				ret = '<b>' + ret + '</b>';
-
-			}
-
-			if (italic_09) {
-
-				ret = '<i>' + ret + '</i>';
-
-			}
-
-			if (underline_09) {
-
-				ret = '<u>' + ret + '</u>';
-
-			}
-
-		}
+		column = Volume[i];
 
 		break;
 
 	case 'tr_10':
 
-		if (show_10) {
+		column = Journal_Abbreviation[i];
 
-			ret += prefix_06 + Extra[i] + suffix_10 + delimiter_10;
+		break;
 
-			if (bold_10) {
+	case 'tr_11':
 
-				ret = '<b>' + ret + '</b>';
-
-			}
-
-			if (italic_10) {
-
-				ret = '<i>' + ret + '</i>';
-
-			}
-
-			if (underline_10) {
-
-				ret = '<u>' + ret + '</u>';
-
-			}
-
-		}
+		column = Extra[i];
 
 		break;
 
 	}
 
+	if (show[tr_num]) {
+
+		ret += prefix[tr_num] + column + suffix[tr_num] + delimiter[tr_num];
+
+		if (bold[tr_num]) {
+
+			ret = '<b>' + ret + '</b>';
+
+		}
+
+		if (italic[tr_num]) {
+
+			ret = '<i>' + ret + '</i>';
+
+		}
+
+		if (underline[tr_num]) {
+
+			ret = '<u>' + ret + '</u>';
+
+		}
+
+	}
+
+	// switch (tr_xx) {
+	//
+	// case 'tr_01':
+	//
+	// if (show[1]) {
+	//
+	// ret += prefix[1] + Publication_Year[i] + suffix[1] + delimiter[1];
+	//
+	// if (bold[1]) {
+	//
+	// ret = '<b>' + ret + '</b>';
+	//
+	// }
+	//
+	// if (italic[1]) {
+	//
+	// ret = '<i>' + ret + '</i>';
+	//
+	// }
+	//
+	// if (underline[1]) {
+	//
+	// ret = '<u>' + ret + '</u>';
+	//
+	// }
+	//
+	// }
+	//
+	// break;
+	//
+	// case 'tr_02':
+	//
+	// if (show[2]) {
+	//
+	// ret += prefix[2] + Author[i] + suffix[2] + delimiter[2];
+	//
+	// if (bold[2]) {
+	//
+	// ret = '<b>' + ret + '</b>';
+	//
+	// }
+	//
+	// if (italic[2]) {
+	//
+	// ret = '<i>' + ret + '</i>';
+	//
+	// }
+	//
+	// if (underline[2]) {
+	//
+	// ret = '<u>' + ret + '</u>';
+	//
+	// }
+	//
+	// }
+	//
+	// break;
+	//
+	// case 'tr_03':
+	//
+	// if (show[3]) {
+	//
+	// ret += prefix[3] + Title[i] + suffix[3] + delimiter[3];
+	//
+	// if (bold[3]) {
+	//
+	// ret = '<b>' + ret + '</b>';
+	//
+	// }
+	//
+	// if (italic[3]) {
+	//
+	// ret = '<i>' + ret + '</i>';
+	//
+	// }
+	//
+	// if (underline[3]) {
+	//
+	// ret = '<u>' + ret + '</u>';
+	//
+	// }
+	//
+	// }
+	//
+	// break;
+	//
+	// case 'tr_04':
+	//
+	// if (show[4]) {
+	//
+	// ret += prefix[4] + Publication_Title[i] + suffix[4] + delimiter[4];
+	//
+	// if (bold[4]) {
+	//
+	// ret = '<b>' + ret + '</b>';
+	//
+	// }
+	//
+	// if (italic[4]) {
+	//
+	// ret = '<i>' + ret + '</i>';
+	//
+	// }
+	//
+	// if (underline[4]) {
+	//
+	// ret = '<u>' + ret + '</u>';
+	//
+	// }
+	//
+	// }
+	//
+	// break;
+	//
+	// case 'tr_05':
+	//
+	// if (show[5]) {
+	//
+	// ret += prefix[5] + DOI[i] + suffix[5] + delimiter[5];
+	//
+	// if (bold[5]) {
+	//
+	// ret = '<b>' + ret + '</b>';
+	//
+	// }
+	//
+	// if (italic[5]) {
+	//
+	// ret = '<i>' + ret + '</i>';
+	//
+	// }
+	//
+	// if (underline[5]) {
+	//
+	// ret = '<u>' + ret + '</u>';
+	//
+	// }
+	//
+	// }
+	//
+	// break;
+	//
+	// case 'tr_06':
+	//
+	// if (show[6]) {
+	//
+	// ret += prefix[6] + Url[i] + suffix[6] + delimiter[6];
+	//
+	// if (bold[6]) {
+	//
+	// ret = '<b>' + ret + '</b>';
+	//
+	// }
+	//
+	// if (italic[6]) {
+	//
+	// ret = '<i>' + ret + '</i>';
+	//
+	// }
+	//
+	// if (underline[6]) {
+	//
+	// ret = '<u>' + ret + '</u>';
+	//
+	// }
+	//
+	// }
+	//
+	// break;
+	//
+	// case 'tr_07':
+	//
+	// if (show[7]) {
+	//
+	// ret += prefix[7] + Pages[i] + suffix[7] + delimiter[7];
+	//
+	// if (bold[7]) {
+	//
+	// ret = '<b>' + ret + '</b>';
+	//
+	// }
+	//
+	// if (italic[7]) {
+	//
+	// ret = '<i>' + ret + '</i>';
+	//
+	// }
+	//
+	// if (underline[7]) {
+	//
+	// ret = '<u>' + ret + '</u>';
+	//
+	// }
+	//
+	// }
+	//
+	// break;
+	//
+	// case 'tr_08':
+	//
+	// if (show[8]) {
+	//
+	// ret += prefix[8] + Volume[i] + suffix[8] + delimiter[8];
+	//
+	// if (bold[8]) {
+	//
+	// ret = '<b>' + ret + '</b>';
+	//
+	// }
+	//
+	// if (italic[8]) {
+	//
+	// ret = '<i>' + ret + '</i>';
+	//
+	// }
+	//
+	// if (underline[8]) {
+	//
+	// ret = '<u>' + ret + '</u>';
+	//
+	// }
+	//
+	// }
+	//
+	// break;
+	//
+	// case 'tr_09':
+	//
+	// if (show[9]) {
+	//
+	// ret += prefix[9] + Journal_Abbreviation[i] + suffix[9] + delimiter[9];
+	//
+	// if (bold[9]) {
+	//
+	// ret = '<b>' + ret + '</b>';
+	//
+	// }
+	//
+	// if (italic[9]) {
+	//
+	// ret = '<i>' + ret + '</i>';
+	//
+	// }
+	//
+	// if (underline[9]) {
+	//
+	// ret = '<u>' + ret + '</u>';
+	//
+	// }
+	//
+	// }
+	//
+	// break;
+	//
+	// case 'tr_10':
+	//
+	// if (show[10]) {
+	//
+	// ret += prefix[10] + Extra[i] + suffix[10] + delimiter[10];
+	//
+	// if (bold[10]) {
+	//
+	// ret = '<b>' + ret + '</b>';
+	//
+	// }
+	//
+	// if (italic[10]) {
+	//
+	// ret = '<i>' + ret + '</i>';
+	//
+	// }
+	//
+	// if (underline[10]) {
+	//
+	// ret = '<u>' + ret + '</u>';
+	//
+	// }
+	//
+	// }
+	//
+	// break;
+	//
+	// }
+
+	// cl('ret = ' + ret);
+
 	return ret;
 
 }
 
-var alignment = [ "tr_01", "tr_02", "tr_03", "tr_04", "tr_05", "tr_06", "tr_07", "tr_08", "tr_09", "tr_10" ];
+var alignment = [ 'tr_01', 'tr_02', 'tr_03', 'tr_04', 'tr_05', 'tr_06', 'tr_07', 'tr_08', 'tr_09', 'tr_10', 'tr_11' ];
 
 var pos_Manual_Tags = -1;
 
@@ -897,87 +1053,96 @@ var pos_Title = -1;
 var pos_Publication_Title = -1;
 var pos_DOI = -1;
 var pos_URL = -1;
+var pos_Date = -1;
 var pos_Pages = -1;
 var pos_Volume = -1;
 var pos_Journal_Abbreviation = -1;
 var pos_Extra = -1;
 
-var show_01 = false;
-var show_02 = false;
-var show_03 = false;
-var show_04 = false;
-var show_05 = false;
-var show_06 = false;
-var show_07 = false;
-var show_08 = false;
-var show_09 = false;
-var show_10 = false;
+var show = [];
+var bold = [];
+var italic = [];
+var underline = [];
+var prefix = [];
+var suffix = [];
+var delimiter = [];
 
-var bold_01 = false;
-var bold_02 = false;
-var bold_03 = false;
-var bold_04 = false;
-var bold_05 = false;
-var bold_06 = false;
-var bold_07 = false;
-var bold_08 = false;
-var bold_09 = false;
-var bold_10 = false;
+// var show_01 = false;
+// var show_02 = false;
+// var show_03 = false;
+// var show_04 = false;
+// var show_05 = false;
+// var show_06 = false;
+// var show_07 = false;
+// var show_08 = false;
+// var show_09 = false;
+// var show_10 = false;
 
-var italic_01 = false;
-var italic_02 = false;
-var italic_03 = false;
-var italic_04 = false;
-var italic_05 = false;
-var italic_06 = false;
-var italic_07 = false;
-var italic_08 = false;
-var italic_09 = false;
-var italic_10 = false;
-
-var underline_01 = false;
-var underline_02 = false;
-var underline_03 = false;
-var underline_04 = false;
-var underline_05 = false;
-var underline_06 = false;
-var underline_07 = false;
-var underline_08 = false;
-var underline_09 = false;
-var underline_10 = false;
-
-var prefix_01 = '';
-var prefix_02 = '';
-var prefix_03 = '';
-var prefix_04 = '';
-var prefix_05 = '';
-var prefix_06 = '';
-var prefix_07 = '';
-var prefix_08 = '';
-var prefix_09 = '';
-var prefix_10 = '';
-
-var suffix_01 = '';
-var suffix_02 = '';
-var suffix_03 = '';
-var suffix_04 = '';
-var suffix_05 = '';
-var suffix_06 = '';
-var suffix_07 = '';
-var suffix_08 = '';
-var suffix_09 = '';
-var suffix_10 = '';
-
-var delimiter_01 = '';
-var delimiter_02 = '';
-var delimiter_03 = '';
-var delimiter_04 = '';
-var delimiter_05 = '';
-var delimiter_06 = '';
-var delimiter_07 = '';
-var delimiter_08 = '';
-var delimiter_09 = '';
-var delimiter_10 = '';
+// var bold_01 = false;
+// var bold_02 = false;
+// var bold_03 = false;
+// var bold_04 = false;
+// var bold_05 = false;
+// var bold_06 = false;
+// var bold_07 = false;
+// var bold_08 = false;
+// var bold_09 = false;
+// var bold_10 = false;
+//
+// var italic_01 = false;
+// var italic_02 = false;
+// var italic_03 = false;
+// var italic_04 = false;
+// var italic_05 = false;
+// var italic_06 = false;
+// var italic_07 = false;
+// var italic_08 = false;
+// var italic_09 = false;
+// var italic_10 = false;
+//
+// var underline_01 = false;
+// var underline_02 = false;
+// var underline_03 = false;
+// var underline_04 = false;
+// var underline_05 = false;
+// var underline_06 = false;
+// var underline_07 = false;
+// var underline_08 = false;
+// var underline_09 = false;
+// var underline_10 = false;
+//
+// var prefix_01 = '';
+// var prefix_02 = '';
+// var prefix_03 = '';
+// var prefix_04 = '';
+// var prefix_05 = '';
+// var prefix_06 = '';
+// var prefix_07 = '';
+// var prefix_08 = '';
+// var prefix_09 = '';
+// var prefix_10 = '';
+//
+// var suffix_01 = '';
+// var suffix_02 = '';
+// var suffix_03 = '';
+// var suffix_04 = '';
+// var suffix_05 = '';
+// var suffix_06 = '';
+// var suffix_07 = '';
+// var suffix_08 = '';
+// var suffix_09 = '';
+// var suffix_10 = '';
+//
+// var delimiter_01 = '';
+// var delimiter_02 = '';
+// var delimiter_03 = '';
+// var delimiter_04 = '';
+// var delimiter_05 = '';
+// var delimiter_06 = '';
+// var delimiter_07 = '';
+// var delimiter_08 = '';
+// var delimiter_09 = '';
+// var delimiter_10 = '';
 
 var chk_tagall = false;
 var chk_tags = [];
@@ -1069,3 +1234,27 @@ var Session = [];
 var Committee = [];
 var History = [];
 var Legislative_Body = [];
+
+var DEBUG_MODE_01 = true;
+
+function cl(msg, dm) {
+
+	switch (dm) {
+
+	case 1:
+
+		if (DEBUG_MODE_01) {
+
+			cl(msg);
+
+		}
+
+	}
+
+}
+
+function cl(msg) {
+
+	console.log(msg);
+
+}
