@@ -1,7 +1,7 @@
-# zotero
-zoteroリファレンス自動生成します。
+# Zotero
+Zoteroリファレンス自動生成します。
 
-zoteroから出力（Export）できるファイルから、リファレンスを自動で生成する機能がついたものです。
+Zoteroから出力（Export）できるファイルから、リファレンスを自動で生成する機能がついたものです。
 使い方については、YouTubeにて公開しております。
 
 利用法については、大まかな流れは以下のとおりとなります。
@@ -28,11 +28,21 @@ https://www.youtube.com/watch?v=Zoz6ZWiksbw
 
 # 開発者メモ
 
-zoteroデスクトップ版では重複に注意すること。
+Zoteroデスクトップ版では重複に注意すること。
 
 インポートをしていると知らないうちに重複がどんどん増えていき、コレクションを削除するときにも「Delete collection」（正しくは「Delete Collection and Items」）を選択してしまうと、Trashがとんでもない量のレコードで溢れているなんてこともある。
 
-Zoteroデスクトップ版では、一気に消す機能がないみたいなので、1個1個消さなければならなくなる。そんなときには、C:\Users\chikamori\Zoteroを開いて見るとsqliteファイルがあるので、それらを削除すればよい。ただ、削除できるのはZoteroを閉じているときのみ。これらのファイルはZoteroを開いたら、また生成できるので大丈夫。空のMy Libraryができる。
+Zoteroデスクトップ版では、一気に消す機能がないみたいなので、1個1個消さなければならなくなる。そんなときには、C:\Users\chikamori\Zoteroを開いて見るとsqliteファイルがあるので、それらを削除すればよい。
+
+better-bibtex.sqlite
+
+better-bibtex.sqlite-journal
+
+zotero.sqlite
+
+zotero.sqlite-journal
+
+ただ、削除できるのはZoteroを閉じているときのみ。これらのファイルはZoteroを開いたら、また生成できるので大丈夫。空のMy Libraryができる。
 
 Zoteroのエクスポート、インポートは今の所Zotero RDFフォーマットで成功している。今のところは、これでやるのが無難か。
 
