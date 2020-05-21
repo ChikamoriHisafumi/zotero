@@ -340,6 +340,8 @@ function main() {
 
 		array_Manual_Tags.splice(rm, 1);
 
+		cl(array_Manual_Tags);
+
 		// array_Manual_Tags.forEach((item, index) => {
 		//
 		// if(item === '') {
@@ -369,54 +371,54 @@ function main() {
 
 		$('#manual_tags').html(html_manual_tags);
 
-		var html_final = '';
+		var html_final = '<div class="SM">下のテキストをドラッグアンドドロップで囲んで、提出書類などにコピーしてください。</div>';
 
-		{
+		// {
 
-			for (var i = 1; i < records.length; i++) {
+		for (var i = 1; i < records.length; i++) {
 
-				// console.log(i + '=' + Manual_Tags[i]);
+			// console.log(i + '=' + Manual_Tags[i]);
 
-				if (typeof Manual_Tags[i] !== 'undefined') {
+			if (typeof Manual_Tags[i] !== 'undefined') {
 
-					var _Manual_Tags = Manual_Tags[i].split('; ');
+				var _Manual_Tags = Manual_Tags[i].split('; ');
 
-					// console.log(_Manual_Tags.length + 'length');
-					//
-					var class_name = 'reference';
+				// console.log(_Manual_Tags.length + 'length');
+				//
+				var class_name = 'reference';
 
-					for (var j = 0; j < _Manual_Tags.length; j++) {
+				for (var j = 0; j < _Manual_Tags.length; j++) {
 
-						// console.log(set_Manual_Tags.indexOf(_Manual_Tags[j]));
+					// console.log(set_Manual_Tags.indexOf(_Manual_Tags[j]));
 
-						class_name += '_' + (Array.from(set_Manual_Tags).indexOf(_Manual_Tags[j]) + 0) + '_';
-
-					}
-
-					html_final += '<div class="' + class_name + '">';
-
-					for (var j = 0; j < alignment.length; j++) {
-
-						html_final += generateAlignedReference(alignment[j], i);
-
-					}
-
-					html_final += '</div>';
-
-					// html_final += '<div class="' + class_name + '">';
-					// html_final += Author[i];
-					// html_final += Title[i];
-					// html_final += Publication_Title[i];
-					// html_final += Volume[i];
-					// html_final += Pages[i];
-					// html_final += DOI[i];
-					// html_final += '</div>';
+					class_name += '_' + (array_Manual_Tags.indexOf(_Manual_Tags[j]) + 0) + '_';
 
 				}
+
+				html_final += '<div class="' + class_name + '">';
+
+				for (var j = 0; j < alignment.length; j++) {
+
+					html_final += generateAlignedReference(alignment[j], i);
+
+				}
+
+				html_final += '</div>';
+
+				// html_final += '<div class="' + class_name + '">';
+				// html_final += Author[i];
+				// html_final += Title[i];
+				// html_final += Publication_Title[i];
+				// html_final += Volume[i];
+				// html_final += Pages[i];
+				// html_final += DOI[i];
+				// html_final += '</div>';
 
 			}
 
 		}
+
+		// }
 
 		$('#final').html(html_final);
 
@@ -480,7 +482,8 @@ function main() {
 
 				if (chk_tags[i]) {
 
-					if (c_name.indexOf('_' + (i + 1) + '_') >= 0) {
+					// if (c_name.indexOf('_' + (i + 1) + '_') >= 0) {
+					if (c_name.indexOf('_' + (i) + '_') >= 0) {
 
 						show = true;
 
@@ -619,20 +622,6 @@ $(function() {
 
 		}
 
-		// var i = 0;
-		//
-		// $('[id^="chk_tags"]').each(function(index, element) {
-		//
-		// chk_tags[i] = $(this).prop('checked');
-		// i++;
-		// // console.log(chk_tags[i]);
-		// // console.log($(this).attr('id'));
-		// // console.log(chk_tags);
-		//
-		// });
-
-		cl(chk_tags, 1);
-
 		main();
 
 	});
@@ -753,292 +742,6 @@ function generateAlignedReference(tr_xx, i) {
 
 	}
 
-	// switch (tr_xx) {
-	//
-	// case 'tr_01':
-	//
-	// if (show[1]) {
-	//
-	// ret += prefix[1] + Publication_Year[i] + suffix[1] + delimiter[1];
-	//
-	// if (bold[1]) {
-	//
-	// ret = '<b>' + ret + '</b>';
-	//
-	// }
-	//
-	// if (italic[1]) {
-	//
-	// ret = '<i>' + ret + '</i>';
-	//
-	// }
-	//
-	// if (underline[1]) {
-	//
-	// ret = '<u>' + ret + '</u>';
-	//
-	// }
-	//
-	// }
-	//
-	// break;
-	//
-	// case 'tr_02':
-	//
-	// if (show[2]) {
-	//
-	// ret += prefix[2] + Author[i] + suffix[2] + delimiter[2];
-	//
-	// if (bold[2]) {
-	//
-	// ret = '<b>' + ret + '</b>';
-	//
-	// }
-	//
-	// if (italic[2]) {
-	//
-	// ret = '<i>' + ret + '</i>';
-	//
-	// }
-	//
-	// if (underline[2]) {
-	//
-	// ret = '<u>' + ret + '</u>';
-	//
-	// }
-	//
-	// }
-	//
-	// break;
-	//
-	// case 'tr_03':
-	//
-	// if (show[3]) {
-	//
-	// ret += prefix[3] + Title[i] + suffix[3] + delimiter[3];
-	//
-	// if (bold[3]) {
-	//
-	// ret = '<b>' + ret + '</b>';
-	//
-	// }
-	//
-	// if (italic[3]) {
-	//
-	// ret = '<i>' + ret + '</i>';
-	//
-	// }
-	//
-	// if (underline[3]) {
-	//
-	// ret = '<u>' + ret + '</u>';
-	//
-	// }
-	//
-	// }
-	//
-	// break;
-	//
-	// case 'tr_04':
-	//
-	// if (show[4]) {
-	//
-	// ret += prefix[4] + Publication_Title[i] + suffix[4] + delimiter[4];
-	//
-	// if (bold[4]) {
-	//
-	// ret = '<b>' + ret + '</b>';
-	//
-	// }
-	//
-	// if (italic[4]) {
-	//
-	// ret = '<i>' + ret + '</i>';
-	//
-	// }
-	//
-	// if (underline[4]) {
-	//
-	// ret = '<u>' + ret + '</u>';
-	//
-	// }
-	//
-	// }
-	//
-	// break;
-	//
-	// case 'tr_05':
-	//
-	// if (show[5]) {
-	//
-	// ret += prefix[5] + DOI[i] + suffix[5] + delimiter[5];
-	//
-	// if (bold[5]) {
-	//
-	// ret = '<b>' + ret + '</b>';
-	//
-	// }
-	//
-	// if (italic[5]) {
-	//
-	// ret = '<i>' + ret + '</i>';
-	//
-	// }
-	//
-	// if (underline[5]) {
-	//
-	// ret = '<u>' + ret + '</u>';
-	//
-	// }
-	//
-	// }
-	//
-	// break;
-	//
-	// case 'tr_06':
-	//
-	// if (show[6]) {
-	//
-	// ret += prefix[6] + Url[i] + suffix[6] + delimiter[6];
-	//
-	// if (bold[6]) {
-	//
-	// ret = '<b>' + ret + '</b>';
-	//
-	// }
-	//
-	// if (italic[6]) {
-	//
-	// ret = '<i>' + ret + '</i>';
-	//
-	// }
-	//
-	// if (underline[6]) {
-	//
-	// ret = '<u>' + ret + '</u>';
-	//
-	// }
-	//
-	// }
-	//
-	// break;
-	//
-	// case 'tr_07':
-	//
-	// if (show[7]) {
-	//
-	// ret += prefix[7] + Pages[i] + suffix[7] + delimiter[7];
-	//
-	// if (bold[7]) {
-	//
-	// ret = '<b>' + ret + '</b>';
-	//
-	// }
-	//
-	// if (italic[7]) {
-	//
-	// ret = '<i>' + ret + '</i>';
-	//
-	// }
-	//
-	// if (underline[7]) {
-	//
-	// ret = '<u>' + ret + '</u>';
-	//
-	// }
-	//
-	// }
-	//
-	// break;
-	//
-	// case 'tr_08':
-	//
-	// if (show[8]) {
-	//
-	// ret += prefix[8] + Volume[i] + suffix[8] + delimiter[8];
-	//
-	// if (bold[8]) {
-	//
-	// ret = '<b>' + ret + '</b>';
-	//
-	// }
-	//
-	// if (italic[8]) {
-	//
-	// ret = '<i>' + ret + '</i>';
-	//
-	// }
-	//
-	// if (underline[8]) {
-	//
-	// ret = '<u>' + ret + '</u>';
-	//
-	// }
-	//
-	// }
-	//
-	// break;
-	//
-	// case 'tr_09':
-	//
-	// if (show[9]) {
-	//
-	// ret += prefix[9] + Journal_Abbreviation[i] + suffix[9] + delimiter[9];
-	//
-	// if (bold[9]) {
-	//
-	// ret = '<b>' + ret + '</b>';
-	//
-	// }
-	//
-	// if (italic[9]) {
-	//
-	// ret = '<i>' + ret + '</i>';
-	//
-	// }
-	//
-	// if (underline[9]) {
-	//
-	// ret = '<u>' + ret + '</u>';
-	//
-	// }
-	//
-	// }
-	//
-	// break;
-	//
-	// case 'tr_10':
-	//
-	// if (show[10]) {
-	//
-	// ret += prefix[10] + Extra[i] + suffix[10] + delimiter[10];
-	//
-	// if (bold[10]) {
-	//
-	// ret = '<b>' + ret + '</b>';
-	//
-	// }
-	//
-	// if (italic[10]) {
-	//
-	// ret = '<i>' + ret + '</i>';
-	//
-	// }
-	//
-	// if (underline[10]) {
-	//
-	// ret = '<u>' + ret + '</u>';
-	//
-	// }
-	//
-	// }
-	//
-	// break;
-	//
-	// }
-
-	// cl('ret = ' + ret);
-
 	return ret;
 
 }
@@ -1066,83 +769,6 @@ var underline = [];
 var prefix = [];
 var suffix = [];
 var delimiter = [];
-
-// var show_01 = false;
-// var show_02 = false;
-// var show_03 = false;
-// var show_04 = false;
-// var show_05 = false;
-// var show_06 = false;
-// var show_07 = false;
-// var show_08 = false;
-// var show_09 = false;
-// var show_10 = false;
-
-// var bold_01 = false;
-// var bold_02 = false;
-// var bold_03 = false;
-// var bold_04 = false;
-// var bold_05 = false;
-// var bold_06 = false;
-// var bold_07 = false;
-// var bold_08 = false;
-// var bold_09 = false;
-// var bold_10 = false;
-//
-// var italic_01 = false;
-// var italic_02 = false;
-// var italic_03 = false;
-// var italic_04 = false;
-// var italic_05 = false;
-// var italic_06 = false;
-// var italic_07 = false;
-// var italic_08 = false;
-// var italic_09 = false;
-// var italic_10 = false;
-//
-// var underline_01 = false;
-// var underline_02 = false;
-// var underline_03 = false;
-// var underline_04 = false;
-// var underline_05 = false;
-// var underline_06 = false;
-// var underline_07 = false;
-// var underline_08 = false;
-// var underline_09 = false;
-// var underline_10 = false;
-//
-// var prefix_01 = '';
-// var prefix_02 = '';
-// var prefix_03 = '';
-// var prefix_04 = '';
-// var prefix_05 = '';
-// var prefix_06 = '';
-// var prefix_07 = '';
-// var prefix_08 = '';
-// var prefix_09 = '';
-// var prefix_10 = '';
-//
-// var suffix_01 = '';
-// var suffix_02 = '';
-// var suffix_03 = '';
-// var suffix_04 = '';
-// var suffix_05 = '';
-// var suffix_06 = '';
-// var suffix_07 = '';
-// var suffix_08 = '';
-// var suffix_09 = '';
-// var suffix_10 = '';
-//
-// var delimiter_01 = '';
-// var delimiter_02 = '';
-// var delimiter_03 = '';
-// var delimiter_04 = '';
-// var delimiter_05 = '';
-// var delimiter_06 = '';
-// var delimiter_07 = '';
-// var delimiter_08 = '';
-// var delimiter_09 = '';
-// var delimiter_10 = '';
 
 var chk_tagall = false;
 var chk_tags = [];
