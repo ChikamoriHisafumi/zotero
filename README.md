@@ -16,13 +16,19 @@ https://www.youtube.com/watch?v=0C_GHGgeZos
 
 https://www.youtube.com/watch?v=t5rndVL7goU
 
+[![](https://img.youtube.com/vi/t5rndVL7goU/0.jpg)](https://www.youtube.com/watch?v=t5rndVL7goU)
+
 ###### （３）リファレンス自動生成機能の使い方
 
 https://www.youtube.com/watch?v=Zoz6ZWiksbw
 
+[![](https://img.youtube.com/vi/Zoz6ZWiksbw/0.jpg)](https://www.youtube.com/watch?v=Zoz6ZWiksbw)
+
 ###### （４）タグの付け方（Zoteroデスクトップ版、web版どちらでも同じ方法でできます）
 
 https://www.youtube.com/watch?v=noYxEoyusUc
+
+[![](https://img.youtube.com/vi/noYxEoyusUc/0.jpg)](https://www.youtube.com/watch?v=noYxEoyusUc)
 
 お手数おかけしますが、ご視聴の上利用方法をご理解いただけますと幸いです。
 
