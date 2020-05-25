@@ -4,6 +4,24 @@
  *
  */
 
+const __tr_01__ = 'tr_01';
+const __tr_02__ = 'tr_02';
+const __tr_03__ = 'tr_03';
+const __tr_04__ = 'tr_04';
+const __tr_05__ = 'tr_05';
+const __tr_06__ = 'tr_06';
+const __tr_07__ = 'tr_07';
+const __tr_08__ = 'tr_08';
+const __tr_09__ = 'tr_09';
+const __tr_10__ = 'tr_10';
+const __tr_11__ = 'tr_11';
+const __tr_12__ = 'tr_12';
+
+// 配列ゼロ番目用。コンソールからコピペするとき用
+const empty = null;
+
+var alignment = [ __tr_01__, __tr_02__, __tr_03__, __tr_04__, __tr_05__, __tr_06__, __tr_07__, __tr_08__, __tr_09__, __tr_10__, __tr_11__, __tr_12__ ];
+
 function main() {
 
 	var entire_data = $('#data_in_csv').val();
@@ -20,6 +38,7 @@ function main() {
 		pos_URL = -1;
 		pos_Date = -1;
 		pos_Pages = -1;
+		pos_Issue = -1;
 		pos_Volume = -1;
 		pos_Journal_Abbreviation = -1;
 		pos_Extra = -1;
@@ -107,6 +126,12 @@ function main() {
 
 			break;
 
+		case 'Issue':
+
+			pos_Issue = i;
+
+			break;
+
 		case 'Volume':
 
 			pos_Volume = i;
@@ -143,6 +168,7 @@ function main() {
 		Url = [];
 		Date = [];
 		Pages = [];
+		Issue = [];
 		Volume = [];
 		Journal_Abbreviation = [];
 		Extra = [];
@@ -161,6 +187,7 @@ function main() {
 			Url.push(columns[pos_URL]);
 			Date.push(columns[pos_Date]);
 			Pages.push(columns[pos_Pages]);
+			Issue.push(columns[pos_Issue]);
 			Volume.push(columns[pos_Volume]);
 			Journal_Abbreviation.push(columns[pos_Journal_Abbreviation]);
 			Extra.push(columns[pos_Extra]);
@@ -316,6 +343,19 @@ function main() {
 		// for(let v of set_Manual_Tags.values()){
 
 		let array_Manual_Tags = Array.from(set_Manual_Tags.values()).sort();
+		var tmp_Manual_Tags = [];
+
+		for (var j = 0; j < array_Manual_Tags.length; j++) {
+
+			if (array_Manual_Tags[j].startsWith('_')) {
+
+				tmp_Manual_Tags.push(array_Manual_Tags[j]);
+
+			}
+
+		}
+
+		array_Manual_Tags = tmp_Manual_Tags;
 
 		// console.log(array_Manual_Tags);
 
@@ -328,19 +368,19 @@ function main() {
 		//
 		// console.log(chk_tags);
 
-		var rm = 0;
+		// var rm = 0;
+		//
+		// while (array_Manual_Tags[rm] !== '') {
+		//
+		// rm++;
+		//
+		// }
+		//
+		// // console.log(rm);
+		//
+		// array_Manual_Tags.splice(rm, 1);
 
-		while (array_Manual_Tags[rm] !== '') {
-
-			rm++;
-
-		}
-
-		// console.log(rm);
-
-		array_Manual_Tags.splice(rm, 1);
-
-		cl(array_Manual_Tags);
+		// cl(array_Manual_Tags);
 
 		// array_Manual_Tags.forEach((item, index) => {
 		//
@@ -351,6 +391,8 @@ function main() {
 		// }
 		//
 		// });
+
+		// cl(array_Manual_Tags);
 
 		for (var i = 0; i < array_Manual_Tags.length; i++) {
 
@@ -532,6 +574,21 @@ function main() {
 
 	}
 
+	// for debug
+
+	cl('/////////////////////////////////////////////');
+
+	cl(show, 1);
+	cl(bold, 1);
+	cl(italic, 1);
+	cl(underline, 1);
+	cl(prefix, 1);
+	cl(suffix, 1);
+	cl(delimiter, 1);
+	cl(alignment, 1);
+
+	cl('/////////////////////////////////////////////');
+
 }
 
 $(function() {
@@ -554,7 +611,7 @@ $(function() {
 
 			}
 
-			console.log(chk_tags);
+			// console.log(chk_tags);
 
 		} else {
 
@@ -589,6 +646,117 @@ $(function() {
 	// }
 	//
 	// });
+
+	$('[name="template"]').change(function() {
+
+		var opt = parseInt($(this).val());
+		// cl(opt);
+
+		switch (opt) {
+
+		case 0:
+
+			show = [ null, false, true, true, true, false, false, false, false, false, false, false, false ];
+			bold = [ null, false, false, false, false, false, false, false, false, false, false, false, false ];
+			italic = [ null, false, false, false, false, false, false, false, false, false, false, false, false ];
+			underline = [ null, false, false, false, false, false, false, false, false, false, false, false, false ];
+			prefix = [ null, '', '', '', '', '', '', '', '', '', '', '' ];
+			suffix = [ null, '', '', '', '', '', '', '', '', '', '', '' ];
+			delimiter = [ null, '', '', '', '', '', '', '', '', '', '', '' ];
+			alignment = [ __tr_01__, __tr_02__, __tr_03__, __tr_04__, __tr_05__, __tr_06__, __tr_07__, __tr_08__, __tr_09__, __tr_10__, __tr_11__, __tr_12__ ];
+
+			break;
+
+		case 1:
+
+			show = [ empty, false, true, true, true, false, false, false, true, true, true, false, false ];
+			bold = [ empty, false, true, false, true, false, false, false, false, false, false, false, false ];
+			italic = [ empty, false, false, false, true, false, false, false, false, false, false, false, false ];
+			underline = [ empty, false, false, false, false, false, false, false, false, false, false, false, false ];
+			prefix = [ empty, "", "", "", "", "", "", "", "", "(", "", "", "" ];
+			suffix = [ empty, "", "", "", "", "", "", "", "", ")", "", "", "" ];
+			delimiter = [ empty, " ", " ", ", ", " ", " ", " ", " ", " ", ": ", " ", " ", " " ];
+			alignment = [ "tr_02", "tr_03", "tr_01", "tr_04", "tr_05", "tr_06", "tr_07", "tr_10", "tr_09", "tr_08", "tr_11", "tr_12" ];
+
+			break;
+
+		}
+
+		var tbody_html = '';
+
+		var tr_html = [];
+
+		$('[id^="tr_"]').each(function(index, element) {
+
+			var tr_num = parseInt($(this).attr('id').split('_')[1]);
+			// $(this).prop('checked', tr_html[tr_num]);
+			tr_html[tr_num] = $(this).prop('outerHTML');
+
+		});
+
+		// cl(tr_html);
+
+		for (var i = 0; i < alignment.length; i++) {
+
+			var tr_num = parseInt(alignment[i].split('_')[1]);
+			tbody_html += tr_html[tr_num];
+
+		}
+
+		$('tbody').html(tbody_html);
+
+		$('[id^="show_"]').each(function(index, element) {
+
+			var tr_num = parseInt($(this).attr('id').split('_')[1]);
+			$(this).prop('checked', show[tr_num]);
+
+		});
+
+		$('[id^="bold_"]').each(function(index, element) {
+
+			var tr_num = parseInt($(this).attr('id').split('_')[1]);
+			$(this).prop('checked', bold[tr_num]);
+
+		});
+
+		$('[id^="italic_"]').each(function(index, element) {
+
+			var tr_num = parseInt($(this).attr('id').split('_')[1]);
+			$(this).prop('checked', italic[tr_num]);
+
+		});
+
+		$('[id^="underline_"]').each(function(index, element) {
+
+			var tr_num = parseInt($(this).attr('id').split('_')[1]);
+			$(this).prop('checked', underline[tr_num]);
+
+		});
+
+		$('[name^="prefix_"]').each(function(index, element) {
+
+			var tr_num = parseInt($(this).attr('name').split('_')[1]);
+			$(this).val(prefix[tr_num]);
+
+		});
+
+		$('[name^="suffix_"]').each(function(index, element) {
+
+			var tr_num = parseInt($(this).attr('name').split('_')[1]);
+			$(this).val(suffix[tr_num]);
+
+		});
+
+		$('[name^="delimiter_"]').each(function(index, element) {
+
+			var tr_num = parseInt($(this).attr('name').split('_')[1]);
+			$(this).val(delimiter[tr_num]);
+
+		});
+
+		main();
+
+	});
 
 	$('#data_in_csv').on('keydown keyup keypress change', function() {
 
@@ -632,7 +800,7 @@ $(function() {
 		update : function() {
 			alignment = $(this).sortable("toArray");
 
-			cl('alignment = ' + alignment);
+			// cl('alignment = ' + alignment);
 
 			main();
 
@@ -650,67 +818,73 @@ function generateAlignedReference(tr_xx, i) {
 
 	switch (tr_xx) {
 
-	case 'tr_01':
+	case __tr_01__:
 
 		column = Publication_Year[i];
 
 		break;
 
-	case 'tr_02':
+	case __tr_02__:
 
 		column = Author[i];
 
 		break;
 
-	case 'tr_03':
+	case __tr_03__:
 
 		column = Title[i];
 
 		break;
 
-	case 'tr_04':
+	case __tr_04__:
 
 		column = Publication_Title[i];
 
 		break;
 
-	case 'tr_05':
+	case __tr_05__:
 
 		column = DOI[i];
 
 		break;
 
-	case 'tr_06':
+	case __tr_06__:
 
 		column = Url[i];
 
 		break;
 
-	case 'tr_07':
+	case __tr_07__:
 
 		column = Date[i];
 
 		break;
 
-	case 'tr_08':
+	case __tr_08__:
 
 		column = Pages[i];
 
 		break;
 
-	case 'tr_09':
+	case __tr_09__:
+
+		column = Issue[i];
+
+		break;
+
+	case __tr_10__:
 
 		column = Volume[i];
 
 		break;
 
-	case 'tr_10':
+	case __tr_11__:
 
 		column = Journal_Abbreviation[i];
 
 		break;
 
-	case 'tr_11':
+	case __tr_12__:
 
 		column = Extra[i];
 
@@ -746,8 +920,6 @@ function generateAlignedReference(tr_xx, i) {
 
 }
 
-var alignment = [ 'tr_01', 'tr_02', 'tr_03', 'tr_04', 'tr_05', 'tr_06', 'tr_07', 'tr_08', 'tr_09', 'tr_10', 'tr_11' ];
-
 var pos_Manual_Tags = -1;
 
 var pos_Publication_Year = -1;
@@ -758,6 +930,7 @@ var pos_DOI = -1;
 var pos_URL = -1;
 var pos_Date = -1;
 var pos_Pages = -1;
+var pos_Issue = -1;
 var pos_Volume = -1;
 var pos_Journal_Abbreviation = -1;
 var pos_Extra = -1;

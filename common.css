@@ -22,6 +22,11 @@
 	text-align: left;
 }
 
+[name="template"] {
+	padding: 6px 30px 10px 30px;
+	font-size: 20px;
+}
+
 #proc_02 {
 	display: none;
 }
@@ -37,6 +42,10 @@
 #data_in_csv {
 	width: 100%;
 	height: 300px;
+}
+
+#template {
+	text-align: center;
 }
 
 label {
