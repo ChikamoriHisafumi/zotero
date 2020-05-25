@@ -81,6 +81,8 @@ https://www.youtube.com/watch?v=noYxEoyusUc
 - 今後のバージョンアップに際して、皆さんからのフィードバックが必要ですので、適宜メールなどでお願いします。
 
 - カラムの追加削除（現在のところ87カラムのうち、12カラムのみが読み込み対象となっております）については、改修が必要となります。
+![名称未設定](https://user-images.githubusercontent.com/52732083/82809349-defc2080-9ec6-11ea-8723-fd597a2cec64.jpg)
+
 
   ```
   Publication_Year
