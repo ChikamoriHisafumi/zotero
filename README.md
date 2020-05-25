@@ -9,6 +9,7 @@ Zoteroから出力（Export）できるファイルから、リファレンス�
 ###### （１）zoteroからcsvをエクスポートする
 
 https://www.youtube.com/watch?v=0C_GHGgeZos
+[![](https://img.youtube.com/vi/0C_GHGgeZos/0.jpg)](https://www.youtube.com/watch?v=0C_GHGgeZos)
 
 ###### （２）GitHubからリファレンス自動生成機能をダウンロードする
 
