@@ -307,23 +307,27 @@ function main() {
 
 		var rm = 0;
 
-		while (array_Manual_Tags[rm] !== '') {
+		if (array_Manual_Tags.length != 0) {
 
-			rm++;
+			while (array_Manual_Tags[rm] !== '') {
 
-			if (rm == array_Manual_Tags.length) {
+				rm++;
 
-				break;
+				if (rm == array_Manual_Tags.length) {
+
+					break;
+
+				}
 
 			}
 
-		}
+			// console.log(rm);
 
-		// console.log(rm);
+			if (rm !== array_Manual_Tags.length) {
 
-		if (rm !== array_Manual_Tags.length) {
+				array_Manual_Tags.splice(rm, 1);
 
-			array_Manual_Tags.splice(rm, 1);
+			}
 
 		}
 
