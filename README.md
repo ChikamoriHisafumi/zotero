@@ -6,6 +6,8 @@ Zoteroから出力（Export）できるファイルから、リファレンス�
 
 利用法については、大まかな流れは以下のとおりとなります。
 
+※　YouTube視聴のリンクを押す際は、右クリックで「新しいタブで開く」を押すことをおすすめします。readmeのmarkdown記法は、別タブで開く機能をリンクにつけられないためです。
+
 ###### （１）zoteroからcsvをエクスポートする
 
 https://www.youtube.com/watch?v=0C_GHGgeZos
