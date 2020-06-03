@@ -16,7 +16,7 @@ https://www.youtube.com/watch?v=CtztB3klSyQ
 
 ### （登録）Zoteroへの新規登録方法
 
-https://www.youtube.com/watch?v=0C_GHGgeZos
+https://www.youtube.com/watch?v=DroTD8dLLok
 
 [![](https://img.youtube.com/vi/DroTD8dLLok/0.jpg)](https://www.youtube.com/watch?v=DroTD8dLLok)
 
