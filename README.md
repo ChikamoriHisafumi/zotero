@@ -8,6 +8,18 @@ Zoteroから出力（Export）できるファイルから、リファレンス�
 
 ※　YouTube視聴のリンクを押す際は、右クリックで「新しいタブで開く」を押すことをおすすめします。readmeのmarkdown記法は、別タブで開く機能をリンクにつけられないためです。
 
+###### （準備）chromeアドインZotero connectorを利用できるようにする方法
+
+https://www.youtube.com/watch?v=CtztB3klSyQ
+
+[![](https://img.youtube.com/vi/CtztB3klSyQ/0.jpg)](https://www.youtube.com/watch?v=CtztB3klSyQ)
+
+###### （登録）Zoteroへの新規登録方法
+
+https://www.youtube.com/watch?v=0C_GHGgeZos
+
+[![](https://img.youtube.com/vi/DroTD8dLLok/0.jpg)](https://www.youtube.com/watch?v=DroTD8dLLok)
+
 ###### （１）zoteroからcsvをエクスポートする
 
 https://www.youtube.com/watch?v=0C_GHGgeZos
