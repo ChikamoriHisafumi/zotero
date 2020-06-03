@@ -8,37 +8,37 @@ Zoteroから出力（Export）できるファイルから、リファレンス�
 
 ※　YouTube視聴のリンクを押す際は、右クリックで「新しいタブで開く」を押すことをおすすめします。readmeのmarkdown記法は、別タブで開く機能をリンクにつけられないためです。
 
-###### （準備）chromeアドインZotero connectorを利用できるようにする方法
+### （準備）chromeアドインZotero connectorを利用できるようにする方法
 
 https://www.youtube.com/watch?v=CtztB3klSyQ
 
 [![](https://img.youtube.com/vi/CtztB3klSyQ/0.jpg)](https://www.youtube.com/watch?v=CtztB3klSyQ)
 
-###### （登録）Zoteroへの新規登録方法
+### （登録）Zoteroへの新規登録方法
 
 https://www.youtube.com/watch?v=0C_GHGgeZos
 
 [![](https://img.youtube.com/vi/DroTD8dLLok/0.jpg)](https://www.youtube.com/watch?v=DroTD8dLLok)
 
-###### （１）zoteroからcsvをエクスポートする
+### （１）zoteroからcsvをエクスポートする
 
 https://www.youtube.com/watch?v=0C_GHGgeZos
 
 [![](https://img.youtube.com/vi/0C_GHGgeZos/0.jpg)](https://www.youtube.com/watch?v=0C_GHGgeZos)
 
-###### （２）GitHubからリファレンス自動生成機能をダウンロードする
+### （２）GitHubからリファレンス自動生成機能をダウンロードする
 
 https://www.youtube.com/watch?v=t5rndVL7goU
 
 [![](https://img.youtube.com/vi/t5rndVL7goU/0.jpg)](https://www.youtube.com/watch?v=t5rndVL7goU)
 
-###### （３）リファレンス自動生成機能の使い方
+### （３）リファレンス自動生成機能の使い方
 
 https://www.youtube.com/watch?v=Zoz6ZWiksbw
 
 [![](https://img.youtube.com/vi/Zoz6ZWiksbw/0.jpg)](https://www.youtube.com/watch?v=Zoz6ZWiksbw)
 
-###### （４）タグの付け方（Zoteroデスクトップ版、web版どちらでも同じ方法でできます）
+### （４）タグの付け方（Zoteroデスクトップ版、web版どちらでも同じ方法でできます）
 
 https://www.youtube.com/watch?v=noYxEoyusUc
 
