@@ -180,7 +180,6 @@ function main() {
 			Manual_Tags.push(columns[pos_Manual_Tags]);
 
 			Publication_Year.push(columns[pos_Publication_Year]);
-			Author.push(columns[pos_Author]);
 			Title.push(columns[pos_Title]);
 			Publication_Title.push(columns[pos_Publication_Title]);
 			DOI.push(columns[pos_DOI]);
@@ -191,6 +190,49 @@ function main() {
 			Volume.push(columns[pos_Volume]);
 			Journal_Abbreviation.push(columns[pos_Journal_Abbreviation]);
 			Extra.push(columns[pos_Extra]);
+
+			if (chk_initial) {
+
+				// if (/\x20[A-Z]+\./.test(temp_author)) {
+				var temp_author = columns[pos_Author];
+
+				if (/(.*);(.*)/.test(temp_author)) {
+
+					var _temp_author = temp_author.split(';');
+
+					for (var k = 0; k < _temp_author.length; k++) {
+
+						var __temp_author = _temp_author[k].split(', ')
+
+						for (var l = 1; l < __temp_author.length; l++) {
+
+							// console.log(__temp_author[l].substr(0, 1));
+							__temp_author[l] = __temp_author[l].substr(0, 1) + '.';
+
+						}
+
+						_temp_author[k] = __temp_author[0];
+
+						__temp_author.shift();
+
+						_temp_author[k] = _temp_author[k] + ' ' + __temp_author.join('');
+
+					}
+
+					Author.push('<span style="color: red;">' + _temp_author.join(',') + '</span>');
+
+				} else {
+
+					Author.push(columns[pos_Author]);
+					// Author.push('aaaaaaaaaaaaaaaaaaaa');
+
+				}
+
+			} else {
+
+				Author.push(columns[pos_Author]);
+
+			}
 
 		}
 
@@ -254,6 +296,13 @@ function main() {
 		html_manual_tags += '<label for="chk_underbar">';
 		html_manual_tags += '<input type="checkbox" value="chk_underbar" id="chk_underbar"' + (chk_underbar ? ' checked="checked"' : '') + '>';
 		html_manual_tags += 'アンダーバーで始まるタグ以外も表示する';
+		html_manual_tags += '</label>';
+		html_manual_tags += '<div>';
+
+		html_manual_tags += '<div>';
+		html_manual_tags += '<label for="chk_initial">';
+		html_manual_tags += '<input type="checkbox" value="chk_initial" id="chk_initial"' + (chk_initial ? ' checked="checked"' : '') + '>';
+		html_manual_tags += 'ファーストネーム、ミドルネームをイニシャル表記にする';
 		html_manual_tags += '</label>';
 		html_manual_tags += '<div>';
 
@@ -558,6 +607,15 @@ $(function() {
 
 	});
 
+	$(document).on('click', '#chk_initial', function() {
+
+		chk_initial = $(this).prop('checked');
+		chk_tags = [];
+
+		main();
+
+	});
+
 	$(document).on('click', '#chk_tagall', function() {
 
 		chk_tagall = $(this).prop('checked');
@@ -642,6 +700,7 @@ $(function() {
 			suffix = [ empty, "", "", "", "", "", "", "", "", ")", "", "", "" ];
 			delimiter = [ empty, " ", " ", ", ", " ", " ", " ", " ", " ", ": ", " ", " ", " " ];
 			alignment = [ "tr_02", "tr_03", "tr_01", "tr_04", "tr_05", "tr_06", "tr_07", "tr_10", "tr_09", "tr_08", "tr_11", "tr_12" ];
+			chk_initial = true;
 
 			break;
 
@@ -909,6 +968,8 @@ var suffix = [];
 var delimiter = [];
 
 var chk_underbar = false;
+var chk_initial = false;
+
 var chk_tagall = false;
 var chk_tags = [];
 
