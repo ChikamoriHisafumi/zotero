@@ -184,7 +184,31 @@ function main() {
 			Publication_Title.push(columns[pos_Publication_Title]);
 			DOI.push(columns[pos_DOI]);
 			Url.push(columns[pos_URL]);
-			Date.push(columns[pos_Date]);
+
+			if (chk_yyyymmdd) {
+
+				if (typeof columns[pos_Date] != 'undefined') {
+
+					if (columns[pos_Date].indexOf('/') >= 0) {
+
+						// console.log(i);
+						// console.log(columns[pos_Date]);
+						Date.push(columns[pos_Date].split('/').join('.'));
+
+					} else {
+
+						Date.push(columns[pos_Date]);
+
+					}
+
+				}
+
+			} else {
+
+				Date.push(columns[pos_Date]);
+
+			}
+
 			Pages.push(columns[pos_Pages]);
 			Issue.push(columns[pos_Issue]);
 			Volume.push(columns[pos_Volume]);
@@ -297,14 +321,21 @@ function main() {
 		html_manual_tags += '<input type="checkbox" value="chk_underbar" id="chk_underbar"' + (chk_underbar ? ' checked="checked"' : '') + '>';
 		html_manual_tags += 'アンダーバーで始まるタグ以外も表示する';
 		html_manual_tags += '</label>';
-		html_manual_tags += '<div>';
+		html_manual_tags += '</div>';
 
 		html_manual_tags += '<div>';
 		html_manual_tags += '<label for="chk_initial">';
 		html_manual_tags += '<input type="checkbox" value="chk_initial" id="chk_initial"' + (chk_initial ? ' checked="checked"' : '') + '>';
 		html_manual_tags += 'ファーストネーム、ミドルネームをイニシャル表記にする';
 		html_manual_tags += '</label>';
+		html_manual_tags += '</div>';
+
 		html_manual_tags += '<div>';
+		html_manual_tags += '<label for="chk_yyyymmdd">';
+		html_manual_tags += '<input type="checkbox" value="chk_yyyymmdd" id="chk_yyyymmdd"' + (chk_yyyymmdd ? ' checked="checked"' : '') + '>';
+		html_manual_tags += '日付を「YYYY.mm.dd」フォーマットにする';
+		html_manual_tags += '</label>';
+		html_manual_tags += '</div>';
 
 		html_manual_tags += '<div>';
 		html_manual_tags += '<label for="chk_tagall">';
@@ -616,6 +647,15 @@ $(function() {
 
 	});
 
+	$(document).on('click', '#chk_yyyymmdd', function() {
+
+		chk_yyyymmdd = $(this).prop('checked');
+		chk_tags = [];
+
+		main();
+
+	});
+
 	$(document).on('click', '#chk_tagall', function() {
 
 		chk_tagall = $(this).prop('checked');
@@ -687,6 +727,8 @@ $(function() {
 			suffix = [ empty, '', '', '', '', '', '', '', '', '', '', '' ];
 			delimiter = [ empty, '', '', '', '', '', '', '', '', '', '', '' ];
 			alignment = [ __tr_01__, __tr_02__, __tr_03__, __tr_04__, __tr_05__, __tr_06__, __tr_07__, __tr_08__, __tr_09__, __tr_10__, __tr_11__, __tr_12__ ];
+			chk_initial = false;
+			chk_yyyymmdd = false;
 
 			break;
 
@@ -701,6 +743,7 @@ $(function() {
 			delimiter = [ empty, " ", " ", ", ", " ", " ", " ", " ", " ", ": ", " ", " ", " " ];
 			alignment = [ "tr_02", "tr_03", "tr_01", "tr_04", "tr_05", "tr_06", "tr_07", "tr_10", "tr_09", "tr_08", "tr_11", "tr_12" ];
 			chk_initial = true;
+			chk_yyyymmdd = true;
 
 			break;
 
@@ -969,6 +1012,7 @@ var delimiter = [];
 
 var chk_underbar = false;
 var chk_initial = false;
+var chk_yyyymmdd = false;
 
 var chk_tagall = false;
 var chk_tags = [];
