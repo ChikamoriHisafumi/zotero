@@ -338,6 +338,13 @@ function main() {
 		html_manual_tags += '</div>';
 
 		html_manual_tags += '<div>';
+		html_manual_tags += '<label for="chk_and_or">';
+		html_manual_tags += '<input type="checkbox" value="chk_and_or" id="chk_and_or"' + (chk_and_or ? ' checked="checked"' : '') + '>';
+		html_manual_tags += 'タグをAND検索にする（チェックなしの場合はOR検索になります）';
+		html_manual_tags += '</label>';
+		html_manual_tags += '</div>';
+
+		html_manual_tags += '<div>';
 		html_manual_tags += '<label for="chk_tagall">';
 		html_manual_tags += '<input type="checkbox" value="chk_tagall" id="chk_tagall"' + (chk_tagall ? ' checked="checked"' : '') + '>';
 		html_manual_tags += 'すべてチェックする';
@@ -562,22 +569,53 @@ function main() {
 		$('[class^="reference_"]').each(function(index, element) {
 
 			var c_name = $(this).attr('class');
-			var show = false;
+			var show;
 
 			// console.log(c_name);
 
-			for (var i = 1; i <= chk_tags.length; i++) {
+			//			for (var i = 1; i <= chk_tags.length; i++) {
 
-				if (chk_tags[i]) {
+			switch (chk_and_or) {
 
-					// if (c_name.indexOf('_' + (i + 1) + '_') >= 0) {
-					if (c_name.indexOf('_' + (i) + '_') >= 0) {
+				case true:
 
-						show = true;
+					show = true;
+
+					for (var i = 1; i <= chk_tags.length; i++) {
+
+						if (chk_tags[i]) {
+
+							if (c_name.indexOf('_' + (i) + '_') == -1) {
+
+								show = false;
+
+							}
+
+						}
 
 					}
 
-				}
+					break;
+
+				case false:
+
+					show = false;
+
+					for (var i = 1; i <= chk_tags.length; i++) {
+
+						if (chk_tags[i]) {
+
+							if (c_name.indexOf('_' + (i) + '_') >= 0) {
+
+								show = true;
+
+							}
+
+						}
+
+					}
+
+					break;
 
 			}
 
@@ -610,7 +648,7 @@ function main() {
 
 		$('#final [class*="show"] span').each(function(index, element) {
 
-//			console.log($(this).text());
+			//			console.log($(this).text());
 			arr_for_copy.push($(this).text());
 
 		});
@@ -673,6 +711,15 @@ $(function() {
 	$(document).on('click', '#chk_yyyymmdd', function() {
 
 		chk_yyyymmdd = $(this).prop('checked');
+		chk_tags = [];
+
+		main();
+
+	});
+
+	$(document).on('click', '#chk_and_or', function() {
+
+		chk_and_or = $(this).prop('checked');
 		chk_tags = [];
 
 		main();
@@ -1047,6 +1094,7 @@ var delimiter = [];
 var chk_underbar = false;
 var chk_initial = false;
 var chk_yyyymmdd = false;
+var chk_and_or = false;
 
 var chk_tagall = false;
 var chk_tags = [];
