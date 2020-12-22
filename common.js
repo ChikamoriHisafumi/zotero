@@ -451,6 +451,27 @@ function main() {
 
 		$('#manual_tags').html(html_manual_tags);
 
+
+		var arr_checked_tag_name = [];
+
+		$('[id^="chk_tag"]').each(function(index, element) {
+
+			if ($(this).prop('checked')) {
+
+				$(this).parent().addClass('on');
+				$(this).parent().removeClass('off');
+
+				arr_checked_tag_name.push($(this).parent().text());
+
+			} else {
+
+				$(this).parent().removeClass('on');
+				$(this).parent().addClass('off');
+
+			}
+
+		});
+
 		var html_final = '<div class="copy">下の業績リストをコピーする</div>';
 		var references = '';
 
@@ -475,8 +496,23 @@ function main() {
 
 					// console.log(set_Manual_Tags.indexOf(_Manual_Tags[j]));
 
+					cl(_Manual_Tags);
+
 					class_name += '_' + (array_Manual_Tags.indexOf(_Manual_Tags[j]) + 1) + '_';
-					tags_name += '<div>' + _Manual_Tags[j] + '</div>'
+
+					if (_Manual_Tags.length > 0) {
+
+						if (arr_checked_tag_name.indexOf(_Manual_Tags[j]) == -1) {
+
+							tags_name += '<div class="off">' + _Manual_Tags[j] + '</div>'
+
+						} else {
+
+							tags_name += '<div class="on">' + _Manual_Tags[j] + '</div>'
+
+						}
+
+					}
 
 				}
 
@@ -543,24 +579,6 @@ function main() {
 			var chk_no = parseInt($(this).attr('id').split('_')[2]);
 			chk_tags[chk_no] = $(this).prop('checked');
 			// i++;
-
-		});
-
-		$('[id^="chk_tag"]').each(function(index, element) {
-
-			if ($(this).prop('checked')) {
-
-				// $(this).parent().css('background-color', 'pink');
-				$(this).parent().addClass('on');
-				$(this).parent().removeClass('off');
-
-			} else {
-
-				// $(this).parent().css('background-color', 'initial');
-				$(this).parent().removeClass('on');
-				$(this).parent().addClass('off');
-
-			}
 
 		});
 
@@ -668,6 +686,8 @@ function main() {
 		$('#error').html(html_error);
 
 	}
+
+	//	console.log(arr_checked_tag_name);
 
 	// cl(chk_tags);
 
