@@ -20,7 +20,7 @@ const __tr_12__ = 'tr_12';
 // 配列ゼロ番目用。コンソールからコピペするとき用
 const empty = null;
 
-var alignment = [ __tr_01__, __tr_02__, __tr_03__, __tr_04__, __tr_05__, __tr_06__, __tr_07__, __tr_08__, __tr_09__, __tr_10__, __tr_11__, __tr_12__ ];
+var alignment = [__tr_01__, __tr_02__, __tr_03__, __tr_04__, __tr_05__, __tr_06__, __tr_07__, __tr_08__, __tr_09__, __tr_10__, __tr_11__, __tr_12__];
 
 function main() {
 
@@ -70,85 +70,85 @@ function main() {
 
 		switch (columns[i]) {
 
-		case 'Manual Tags':
+			case 'Manual Tags':
 
-			pos_Manual_Tags = i;
+				pos_Manual_Tags = i;
 
-			break;
+				break;
 
-		// ///////////////////////////
+			// ///////////////////////////
 
-		case 'Publication Year':
+			case 'Publication Year':
 
-			pos_Publication_Year = i;
+				pos_Publication_Year = i;
 
-			break;
+				break;
 
-		case 'Author':
+			case 'Author':
 
-			pos_Author = i;
+				pos_Author = i;
 
-			break;
+				break;
 
-		case 'Title':
+			case 'Title':
 
-			pos_Title = i;
+				pos_Title = i;
 
-			break;
+				break;
 
-		case 'Publication Title':
+			case 'Publication Title':
 
-			pos_Publication_Title = i;
+				pos_Publication_Title = i;
 
-			break;
+				break;
 
-		case 'DOI':
+			case 'DOI':
 
-			pos_DOI = i;
+				pos_DOI = i;
 
-			break;
+				break;
 
-		case 'URL':
+			case 'URL':
 
-			pos_URL = i;
+				pos_URL = i;
 
-			break;
+				break;
 
-		case 'Date':
+			case 'Date':
 
-			pos_Date = i;
+				pos_Date = i;
 
-			break;
+				break;
 
-		case 'Pages':
+			case 'Pages':
 
-			pos_Pages = i;
+				pos_Pages = i;
 
-			break;
+				break;
 
-		case 'Issue':
+			case 'Issue':
 
-			pos_Issue = i;
+				pos_Issue = i;
 
-			break;
+				break;
 
-		case 'Volume':
+			case 'Volume':
 
-			pos_Volume = i;
+				pos_Volume = i;
 
-			break;
+				break;
 
-		case 'Journal Abbreviation':
+			case 'Journal Abbreviation':
 
-			pos_Journal_Abbreviation = i;
+				pos_Journal_Abbreviation = i;
 
-			break;
+				break;
 
-		case 'Extra':
+			case 'Extra':
 
-			pos_Extra = i;
+				pos_Extra = i;
 
-			break;
+				break;
 
 		}
 
@@ -444,7 +444,8 @@ function main() {
 
 		$('#manual_tags').html(html_manual_tags);
 
-		var html_final = '<div class="SM">下のテキストをドラッグアンドドロップで囲んで、提出書類などにコピーしてください。</div>';
+		var html_final = '<div class="copy">下の業績リストをコピーする</div>';
+		var references = '';
 
 		// {
 
@@ -459,12 +460,16 @@ function main() {
 				// console.log(_Manual_Tags.length + 'length');
 				//
 				var class_name = 'reference';
+				var tags_name = '';
+
+				var a_reference = '';
 
 				for (var j = 0; j < _Manual_Tags.length; j++) {
 
 					// console.log(set_Manual_Tags.indexOf(_Manual_Tags[j]));
 
 					class_name += '_' + (array_Manual_Tags.indexOf(_Manual_Tags[j]) + 1) + '_';
+					tags_name += '<div>' + _Manual_Tags[j] + '</div>'
 
 				}
 
@@ -472,11 +477,20 @@ function main() {
 
 				for (var j = 0; j < alignment.length; j++) {
 
-					html_final += generateAlignedReference(alignment[j], i);
+					//					html_final += generateAlignedReference(alignment[j], i);
+					a_reference += generateAlignedReference(alignment[j], i);
 
 				}
 
+				html_final += '<span>' + a_reference + '</span>';
+				html_final += '<div class="tags">' + tags_name + '</div>';
 				html_final += '</div>';
+
+				references += a_reference;
+
+
+
+				//		console.log(tags_name);
 
 				// html_final += '<div class="' + class_name + '">';
 				// html_final += Author[i];
@@ -491,9 +505,7 @@ function main() {
 
 		}
 
-		// cl(array_Manual_Tags);
-
-		// }
+		html_final += '<textarea id="for_copy"></textarea>'
 
 		$('#final').html(html_final);
 
@@ -593,6 +605,17 @@ function main() {
 		}
 
 		$('#error').html('');
+
+		var arr_for_copy = [];
+
+		$('#final [class*="show"] span').each(function(index, element) {
+
+//			console.log($(this).text());
+			arr_for_copy.push($(this).text());
+
+		});
+
+		$('#for_copy').val(arr_for_copy.join('\r\n'));
 
 	} else {
 
@@ -717,35 +740,35 @@ $(function() {
 
 		switch (opt) {
 
-		case 0:
+			case 0:
 
-			show = [ empty, false, true, true, true, false, false, false, false, false, false, false, false ];
-			bold = [ empty, false, false, false, false, false, false, false, false, false, false, false, false ];
-			italic = [ empty, false, false, false, false, false, false, false, false, false, false, false, false ];
-			underline = [ empty, false, false, false, false, false, false, false, false, false, false, false, false ];
-			prefix = [ empty, '', '', '', '', '', '', '', '', '', '', '' ];
-			suffix = [ empty, '', '', '', '', '', '', '', '', '', '', '' ];
-			delimiter = [ empty, '', '', '', '', '', '', '', '', '', '', '' ];
-			alignment = [ __tr_01__, __tr_02__, __tr_03__, __tr_04__, __tr_05__, __tr_06__, __tr_07__, __tr_08__, __tr_09__, __tr_10__, __tr_11__, __tr_12__ ];
-			chk_initial = false;
-			chk_yyyymmdd = false;
+				show = [empty, false, true, true, true, false, false, false, false, false, false, false, false];
+				bold = [empty, false, false, false, false, false, false, false, false, false, false, false, false];
+				italic = [empty, false, false, false, false, false, false, false, false, false, false, false, false];
+				underline = [empty, false, false, false, false, false, false, false, false, false, false, false, false];
+				prefix = [empty, '', '', '', '', '', '', '', '', '', '', ''];
+				suffix = [empty, '', '', '', '', '', '', '', '', '', '', ''];
+				delimiter = [empty, '', '', '', '', '', '', '', '', '', '', ''];
+				alignment = [__tr_01__, __tr_02__, __tr_03__, __tr_04__, __tr_05__, __tr_06__, __tr_07__, __tr_08__, __tr_09__, __tr_10__, __tr_11__, __tr_12__];
+				chk_initial = false;
+				chk_yyyymmdd = false;
 
-			break;
+				break;
 
-		case 1:
+			case 1:
 
-			show = [ empty, false, true, true, true, false, false, false, true, true, true, false, false ];
-			bold = [ empty, false, true, false, true, false, false, false, false, false, false, false, false ];
-			italic = [ empty, false, false, false, true, false, false, false, false, false, false, false, false ];
-			underline = [ empty, false, false, false, false, false, false, false, false, false, false, false, false ];
-			prefix = [ empty, "", "", "", "", "", "", "", "", "(", "", "", "" ];
-			suffix = [ empty, "", "", "", "", "", "", "", "", ")", "", "", "" ];
-			delimiter = [ empty, " ", " ", ", ", " ", " ", " ", " ", " ", ": ", " ", " ", " " ];
-			alignment = [ "tr_02", "tr_03", "tr_01", "tr_04", "tr_05", "tr_06", "tr_07", "tr_10", "tr_09", "tr_08", "tr_11", "tr_12" ];
-			chk_initial = true;
-			chk_yyyymmdd = true;
+				show = [empty, false, true, true, true, false, false, false, true, true, true, false, false];
+				bold = [empty, false, true, false, true, false, false, false, false, false, false, false, false];
+				italic = [empty, false, false, false, true, false, false, false, false, false, false, false, false];
+				underline = [empty, false, false, false, false, false, false, false, false, false, false, false, false];
+				prefix = [empty, "", "", "", "", "", "", "", "", "(", "", "", ""];
+				suffix = [empty, "", "", "", "", "", "", "", "", ")", "", "", ""];
+				delimiter = [empty, " ", " ", ", ", " ", " ", " ", " ", " ", ": ", " ", " ", " "];
+				alignment = ["tr_02", "tr_03", "tr_01", "tr_04", "tr_05", "tr_06", "tr_07", "tr_10", "tr_09", "tr_08", "tr_11", "tr_12"];
+				chk_initial = true;
+				chk_yyyymmdd = true;
 
-			break;
+				break;
 
 		}
 
@@ -863,8 +886,18 @@ $(function() {
 
 	// $('#sortable-table tbody').sortable();
 
+	$(document).on('click', '.copy', function() {
+
+		$('#for_copy').select();
+
+		document.execCommand('copy');
+
+		alert('コピーしました。別の文書に貼り付けできます。')
+
+	});
+
 	$('#sortable-table tbody').sortable({
-		update : function() {
+		update: function() {
 			alignment = $(this).sortable("toArray");
 
 			// cl('alignment = ' + alignment);
@@ -874,6 +907,7 @@ $(function() {
 		}
 
 	});
+
 
 });
 
@@ -885,77 +919,77 @@ function generateAlignedReference(tr_xx, i) {
 
 	switch (tr_xx) {
 
-	case __tr_01__:
+		case __tr_01__:
 
-		column = Publication_Year[i];
+			column = Publication_Year[i];
 
-		break;
+			break;
 
-	case __tr_02__:
+		case __tr_02__:
 
-		column = Author[i];
+			column = Author[i];
 
-		break;
+			break;
 
-	case __tr_03__:
+		case __tr_03__:
 
-		column = Title[i];
+			column = Title[i];
 
-		break;
+			break;
 
-	case __tr_04__:
+		case __tr_04__:
 
-		column = Publication_Title[i];
+			column = Publication_Title[i];
 
-		break;
+			break;
 
-	case __tr_05__:
+		case __tr_05__:
 
-		column = DOI[i];
+			column = DOI[i];
 
-		break;
+			break;
 
-	case __tr_06__:
+		case __tr_06__:
 
-		column = Url[i];
+			column = Url[i];
 
-		break;
+			break;
 
-	case __tr_07__:
+		case __tr_07__:
 
-		column = Date[i];
+			column = Date[i];
 
-		break;
+			break;
 
-	case __tr_08__:
+		case __tr_08__:
 
-		column = Pages[i];
+			column = Pages[i];
 
-		break;
+			break;
 
-	case __tr_09__:
+		case __tr_09__:
 
-		column = Issue[i];
+			column = Issue[i];
 
-		break;
+			break;
 
-	case __tr_10__:
+		case __tr_10__:
 
-		column = Volume[i];
+			column = Volume[i];
 
-		break;
+			break;
 
-	case __tr_11__:
+		case __tr_11__:
 
-		column = Journal_Abbreviation[i];
+			column = Journal_Abbreviation[i];
 
-		break;
+			break;
 
-	case __tr_12__:
+		case __tr_12__:
 
-		column = Extra[i];
+			column = Extra[i];
 
-		break;
+			break;
 
 	}
 
@@ -1115,13 +1149,13 @@ function cl(msg, dm) {
 
 	switch (dm) {
 
-	case 1:
+		case 1:
 
-		if (DEBUG_MODE_01) {
+			if (DEBUG_MODE_01) {
 
-			cl(msg);
+				cl(msg);
 
-		}
+			}
 
 	}
 
