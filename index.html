@@ -1,28 +1,36 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="common.css">
-<link href="https://fonts.googleapis.com/earlyaccess/hannari.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Sawarabi+Mincho" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.css">
-<!-- jQuery -->
-<!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script> -->
-<!-- jQuery UI -->
-<!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script> -->
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
-<script src="common.js"></script>
-<title>リファレンス自動生成します。</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="common.css">
+	<link href="https://fonts.googleapis.com/earlyaccess/hannari.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Sawarabi+Mincho" rel="stylesheet">
+
+	<!-- jQuery -->
+	<script src="source/jquery-3.6.0.js"></script>
+
+	<!-- jQuery UI -->
+	<script src="source/jquery-ui.js"></script>
+
+	<script src="common.js"></script>
+
+	<title>リファレンス自動生成します。</title>
 </head>
+
 <body>
 
 	<div id="container_index">
 		<div id="proc_01">
 			<div class="SM_BIG">リファレンス自動生成します。</div>
-			<div class="SM" style="text-decoration-line: line-through;">1.Zoteroからエクスポートしたファイルを選択してください（CSVの加工は不要です）。</div>
-			<div class="SM_080">（CSVだと、このHTMLのあるディレクトリにCSVを置かないといけないようなので、やめました）</div>
-			<div class="SM">1.ダウンロードしたCSVをExcelファイルで開いたときの中身をすべてコピーし、下のテキストボックスに貼り付けてください。</div>
+			<div>
+				<input type="file" name="file" id="file" accept=".csv" onchange="readCSVFile()"> <br><br>
+				<!-- <input type="button" id="btnsubmit" value="Submit" onclick="readCSVFile();" > -->
+			</div>
+
+			<div class="SM">1.Zoteroからエクスポートしたファイルを選択してください（CSVの加工は不要です）。</div>
+			<!-- <div class="SM_080">（CSVだと、このHTMLのあるディレクトリにCSVを置かないといけないようなので、やめました）</div>
+			<div class="SM">1.ダウンロードしたCSVをExcelファイルで開いたときの中身をすべてコピーし、下のテキストボックスに貼り付けてください。</div> -->
 			<!-- 			<div id="file_path"> -->
 			<!-- 				<input type="file" id="file"> -->
 			<!-- 			</div> -->
@@ -31,7 +39,9 @@
 			</div>
 		</div>
 		<div id="proc_02">
-			<div class="SM">2.CSVを読み込みました。順番を並べ替えたり、接頭辞・接尾辞・カンマなどが必要であればつけ、太字・斜体・下線が必要であればチェックを入れ、オリジナルタグによりフィルタリングなどを行ってください。提出先を変更すれば、フォーマットも変わります。</div>
+			<div class="SM">
+				2.CSVを読み込みました。順番を並べ替えたり、接頭辞・接尾辞・カンマなどが必要であればつけ、太字・斜体・下線が必要であればチェックを入れ、オリジナルタグによりフィルタリングなどを行ってください。提出先を変更すれば、フォーマットも変わります。
+			</div>
 			<div id="template">
 				よく使う提出フォーマット： <select name="template">
 					<option value="0">デフォルト</option>
@@ -184,4 +194,5 @@
 	</div>
 
 </body>
+
 </html>

@@ -1,7 +1,9 @@
 @charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
 
 [class*="SM"] {
 	font-family: "Sawarabi Mincho";
+	font-family: 'Noto Sans JP', sans-serif;
 }
 
 [class*="BIG"] {
@@ -16,6 +18,28 @@
 
 #file_path {
 	margin: 40px auto;
+}
+
+input[type="file"]{
+	width: 600px;    
+	background: antiquewhite;
+    padding: 20px 40px;
+	cursor: pointer;
+}
+
+.bo{
+	font-weight: 900;
+    /* font-weight: bolder; */
+	background: wheat;
+}
+.it{
+	font-style: italic;
+	background: rgb(199, 255, 243);
+}
+.un{
+	text-decoration: underline;
+    font-weight: bolder;
+	background: rgb(181, 179, 245);
 }
 
 [id^="proc_"]>div {
@@ -42,6 +66,7 @@
 #data_in_csv {
 	width: 100%;
 	height: 300px;
+	display: none;
 }
 
 #template {
@@ -115,6 +140,7 @@ label {
 
 [class^="reference"] {
 	font-family: 'times', 'ms mincho';
+	font-family: 'Noto Sans JP', sans-serif;
 	/* 	margin: 20px 2px; */
 	box-shadow: inset 0px 1px 0px 0px #ffffff;
 	background: linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
@@ -153,6 +179,7 @@ label {
 	cursor: pointer;
 	color: #ffffff;
 	font-family: Arial;
+	font-family: 'Noto Sans JP', sans-serif;
 	font-size: 15px;
 	font-weight: bold;
 	padding: 6px 24px;
@@ -219,6 +246,7 @@ label {
 	padding: 1px 8px;
 	font-size: 14px;
 	font-family: none;
+	font-family: 'Noto Sans JP', sans-serif;
 	font-weight: 600;
 	border-radius: 4px;
 }

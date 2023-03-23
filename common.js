@@ -22,137 +22,197 @@ const empty = null;
 
 var alignment = [__tr_01__, __tr_02__, __tr_03__, __tr_04__, __tr_05__, __tr_06__, __tr_07__, __tr_08__, __tr_09__, __tr_10__, __tr_11__, __tr_12__];
 
-function main() {
+let rowData = [];
 
-	var entire_data = $('#data_in_csv').val();
+function readCSVFile() {
+	var files = document.querySelector('#file').files;
 
-	if (entire_data == '') {
+	if (files.length > 0) {
 
-		pos_Manual_Tags = -1;
+		// Selected file
+		var file = files[0];
 
-		pos_Publication_Year = -1;
-		pos_Author = -1;
-		pos_Title = -1;
-		pos_Publication_Title = -1;
-		pos_DOI = -1;
-		pos_URL = -1;
-		pos_Date = -1;
-		pos_Pages = -1;
-		pos_Issue = -1;
-		pos_Volume = -1;
-		pos_Journal_Abbreviation = -1;
-		pos_Extra = -1;
+		// FileReader Object
+		var reader = new FileReader();
 
-		$('#proc_02').hide();
-		$('#error').html('');
+		// Read file as string 
+		reader.readAsText(file);
+
+		// Load event
+		reader.onload = function (event) {
+
+			// Read file data
+			var csvdata = event.target.result;
+
+			// Split by line break to gets rows Array
+			rowData = csvdata.split('\n');
+
+			// <table > <tbody>
+			//   var tbodyEl = document.getElementById('tblcsvdata').getElementsByTagName('tbody')[0];
+			//   tbodyEl.innerHTML = "";
+
+			// Loop on the row Array (change row=0 if you also want to read 1st row)
+			// for (var row = 1; row < rowData.length; row++) {
+
+			// Insert a row at the end of table
+			// console.log(rowData[row])
+			// }
+
+			// console.log(rowData[0]);
+
+			// $('#data_in_csv').val(rowData);
+			// console.log($('#data_in_csv').val());
+			// main();
+
+
+			// var entire_data = $('#data_in_csv').val();
+
+			if (csvdata == '') {
+
+				pos_Manual_Tags = -1;
+
+				pos_Publication_Year = -1;
+				pos_Author = -1;
+				pos_Title = -1;
+				pos_Publication_Title = -1;
+				pos_DOI = -1;
+				pos_URL = -1;
+				pos_Date = -1;
+				pos_Pages = -1;
+				pos_Issue = -1;
+				pos_Volume = -1;
+				pos_Journal_Abbreviation = -1;
+				pos_Extra = -1;
+
+				$('#proc_02').hide();
+				$('#error').html('');
+
+			} else {
+
+				$('#proc_02').show();
+
+			}
+
+			// var records = entire_data.split('\n');
+
+			// console.log(records.length);
+
+			var columns = rowData[0].slice(1).slice(0, -1).split('","');
+
+			// console.log(columns);
+
+			for (var i = 0; i < columns.length; i++) {
+
+				if (columns[i] == 'Manual Tags') {
+
+					pos_Manual_Tags = i;
+
+				}
+
+				switch (columns[i]) {
+
+					case 'Manual Tags':
+
+						pos_Manual_Tags = i;
+
+						break;
+
+					// ///////////////////////////
+
+					case 'Publication Year':
+
+						pos_Publication_Year = i;
+
+						break;
+
+					case 'Author':
+
+						pos_Author = i;
+
+						break;
+
+					case 'Title':
+
+						pos_Title = i;
+
+						break;
+
+					case 'Publication Title':
+
+						pos_Publication_Title = i;
+
+						break;
+
+					case 'DOI':
+
+						pos_DOI = i;
+
+						break;
+
+					case 'URL':
+
+						pos_URL = i;
+
+						break;
+
+					case 'Date':
+
+						pos_Date = i;
+
+						break;
+
+					case 'Pages':
+
+						pos_Pages = i;
+
+						break;
+
+					case 'Issue':
+
+						pos_Issue = i;
+
+						break;
+
+					case 'Volume':
+
+						pos_Volume = i;
+
+						break;
+
+					case 'Journal Abbreviation':
+
+						pos_Journal_Abbreviation = i;
+
+						break;
+
+					case 'Extra':
+
+						pos_Extra = i;
+
+						break;
+
+				}
+
+			}
+
+			// cl('pos_Manual_Tags', pos_Manual_Tags);
+			// cl(pos_Manual_Tags);
+
+			// updateDataInVariables();
+			main();
+
+		};
+
 
 	} else {
 
-		$('#proc_02').show();
+		alert("Please select a file.");
 
 	}
 
-	var records = entire_data.split('\n');
+}
 
-	// console.log(records.length);
-
-	var columns = records[0].split('\t');
-
-	// console.log(columns);
-
-	for (var i = 0; i < columns.length; i++) {
-
-		if (columns[i] == 'Manual Tags') {
-
-			pos_Manual_Tags = i;
-
-		}
-
-		switch (columns[i]) {
-
-			case 'Manual Tags':
-
-				pos_Manual_Tags = i;
-
-				break;
-
-			// ///////////////////////////
-
-			case 'Publication Year':
-
-				pos_Publication_Year = i;
-
-				break;
-
-			case 'Author':
-
-				pos_Author = i;
-
-				break;
-
-			case 'Title':
-
-				pos_Title = i;
-
-				break;
-
-			case 'Publication Title':
-
-				pos_Publication_Title = i;
-
-				break;
-
-			case 'DOI':
-
-				pos_DOI = i;
-
-				break;
-
-			case 'URL':
-
-				pos_URL = i;
-
-				break;
-
-			case 'Date':
-
-				pos_Date = i;
-
-				break;
-
-			case 'Pages':
-
-				pos_Pages = i;
-
-				break;
-
-			case 'Issue':
-
-				pos_Issue = i;
-
-				break;
-
-			case 'Volume':
-
-				pos_Volume = i;
-
-				break;
-
-			case 'Journal Abbreviation':
-
-				pos_Journal_Abbreviation = i;
-
-				break;
-
-			case 'Extra':
-
-				pos_Extra = i;
-
-				break;
-
-		}
-
-	}
+function updateDataInVariables() {
 
 	if (pos_Manual_Tags >= 0) {
 
@@ -166,16 +226,18 @@ function main() {
 		Publication_Title = [];
 		DOI = [];
 		Url = [];
-		Date = [];
+		dAte = [];
 		Pages = [];
 		Issue = [];
 		Volume = [];
 		Journal_Abbreviation = [];
 		Extra = [];
 
-		for (var i = 1; i < records.length; i++) {
+		for (var i = 1; i < rowData.length; i++) {
 
-			var columns = records[i].split('\t');
+			// var columns = records[i].split('\t');
+			var columns = rowData[i].slice(1).slice(0, -1).split('","');
+			// cl(i, 'columns', columns);
 
 			Manual_Tags.push(columns[pos_Manual_Tags]);
 
@@ -193,11 +255,11 @@ function main() {
 
 						// console.log(i);
 						// console.log(columns[pos_Date]);
-						Date.push(columns[pos_Date].split('/').join('.'));
+						dAte.push(columns[pos_Date].split('/').join('.'));
 
 					} else {
 
-						Date.push(columns[pos_Date]);
+						dAte.push(columns[pos_Date]);
 
 					}
 
@@ -205,7 +267,7 @@ function main() {
 
 			} else {
 
-				Date.push(columns[pos_Date]);
+				dAte.push(columns[pos_Date]);
 
 			}
 
@@ -260,255 +322,361 @@ function main() {
 
 		}
 
-		$('[id^="show_"]').each(function(index, element) {
+	}
 
-			var tr_num = parseInt($(this).attr('id').split('_')[1]);
-			show[tr_num] = $(this).prop('checked');
+}
+function main() {
 
-		});
+	updateDataInVariables();
 
-		$('[id^="bold_"]').each(function(index, element) {
+	$('[id^="show_"]').each(function (index, element) {
 
-			var tr_num = parseInt($(this).attr('id').split('_')[1]);
-			bold[tr_num] = $(this).prop('checked');
+		var tr_num = parseInt($(this).attr('id').split('_')[1]);
+		show[tr_num] = $(this).prop('checked');
 
-		});
+	});
 
-		$('[id^="italic_"]').each(function(index, element) {
+	$('[id^="bold_"]').each(function (index, element) {
 
-			var tr_num = parseInt($(this).attr('id').split('_')[1]);
-			italic[tr_num] = $(this).prop('checked');
+		var tr_num = parseInt($(this).attr('id').split('_')[1]);
+		bold[tr_num] = $(this).prop('checked');
 
-		});
+	});
 
-		$('[id^="underline_"]').each(function(index, element) {
+	$('[id^="italic_"]').each(function (index, element) {
 
-			var tr_num = parseInt($(this).attr('id').split('_')[1]);
-			underline[tr_num] = $(this).prop('checked');
+		var tr_num = parseInt($(this).attr('id').split('_')[1]);
+		italic[tr_num] = $(this).prop('checked');
 
-		});
+	});
 
-		$('[name^="prefix_"]').each(function(index, element) {
+	$('[id^="underline_"]').each(function (index, element) {
 
-			var tr_num = parseInt($(this).attr('name').split('_')[1]);
-			prefix[tr_num] = $(this).val();
+		var tr_num = parseInt($(this).attr('id').split('_')[1]);
+		underline[tr_num] = $(this).prop('checked');
 
-		});
+	});
 
-		$('[name^="suffix_"]').each(function(index, element) {
+	$('[name^="prefix_"]').each(function (index, element) {
 
-			var tr_num = parseInt($(this).attr('name').split('_')[1]);
-			suffix[tr_num] = $(this).val();
+		var tr_num = parseInt($(this).attr('name').split('_')[1]);
+		prefix[tr_num] = $(this).val();
 
-		});
+	});
 
-		$('[name^="delimiter_"]').each(function(index, element) {
+	$('[name^="suffix_"]').each(function (index, element) {
 
-			var tr_num = parseInt($(this).attr('name').split('_')[1]);
-			delimiter[tr_num] = $(this).val();
+		var tr_num = parseInt($(this).attr('name').split('_')[1]);
+		suffix[tr_num] = $(this).val();
 
-		});
+	});
 
-		let set_Manual_Tags = new Set(Manual_Tags.join('; ').split('; '));
+	$('[name^="delimiter_"]').each(function (index, element) {
 
-		// console.log(set_Manual_Tags);
+		var tr_num = parseInt($(this).attr('name').split('_')[1]);
+		delimiter[tr_num] = $(this).val();
 
-		var html_manual_tags = '';
-		var no = 0;
+	});
 
-		html_manual_tags += '<div>';
-		html_manual_tags += '<label for="chk_underbar">';
-		html_manual_tags += '<input type="checkbox" value="chk_underbar" id="chk_underbar"' + (chk_underbar ? ' checked="checked"' : '') + '>';
-		html_manual_tags += 'アンダーバーで始まるタグ以外も表示する';
-		html_manual_tags += '</label>';
-		html_manual_tags += '</div>';
+	let set_Manual_Tags = new Set(Manual_Tags.join('; ').split('; '));
 
-		html_manual_tags += '<div>';
-		html_manual_tags += '<label for="chk_initial">';
-		html_manual_tags += '<input type="checkbox" value="chk_initial" id="chk_initial"' + (chk_initial ? ' checked="checked"' : '') + '>';
-		html_manual_tags += 'ファーストネーム、ミドルネームをイニシャル表記にする';
-		html_manual_tags += '</label>';
-		html_manual_tags += '</div>';
+	// console.log(set_Manual_Tags);
 
-		html_manual_tags += '<div>';
-		html_manual_tags += '<label for="chk_yyyymmdd">';
-		html_manual_tags += '<input type="checkbox" value="chk_yyyymmdd" id="chk_yyyymmdd"' + (chk_yyyymmdd ? ' checked="checked"' : '') + '>';
-		html_manual_tags += '日付を「YYYY.mm.dd」フォーマットにする';
-		html_manual_tags += '</label>';
-		html_manual_tags += '</div>';
+	var html_manual_tags = '';
+	var no = 0;
 
-		html_manual_tags += '<div>';
-		html_manual_tags += '<label for="chk_and_or">';
-		html_manual_tags += '<input type="checkbox" value="chk_and_or" id="chk_and_or"' + (chk_and_or ? ' checked="checked"' : '') + '>';
-		html_manual_tags += 'タグをAND検索にする（チェックなしの場合はOR検索になります）';
-		html_manual_tags += '</label>';
-		html_manual_tags += '</div>';
+	html_manual_tags += '<div>';
+	html_manual_tags += '<label for="chk_underbar">';
+	html_manual_tags += '<input type="checkbox" value="chk_underbar" id="chk_underbar"' + (chk_underbar ? ' checked="checked"' : '') + '>';
+	html_manual_tags += 'アンダーバーで始まるタグ以外も表示する';
+	html_manual_tags += '</label>';
+	html_manual_tags += '</div>';
 
-		html_manual_tags += '<div>';
-		html_manual_tags += '<label for="chk_tagall">';
-		html_manual_tags += '<input type="checkbox" value="chk_tagall" id="chk_tagall"' + (chk_tagall ? ' checked="checked"' : '') + '>';
-		html_manual_tags += 'すべてチェックする';
-		html_manual_tags += '</label>';
+	html_manual_tags += '<div>';
+	html_manual_tags += '<label for="chk_initial">';
+	html_manual_tags += '<input type="checkbox" value="chk_initial" id="chk_initial"' + (chk_initial ? ' checked="checked"' : '') + '>';
+	html_manual_tags += 'ファーストネーム、ミドルネームをイニシャル表記にする';
+	html_manual_tags += '</label>';
+	html_manual_tags += '</div>';
 
-		html_manual_tags += '</div>';
+	html_manual_tags += '<div>';
+	html_manual_tags += '<label for="chk_yyyymmdd">';
+	html_manual_tags += '<input type="checkbox" value="chk_yyyymmdd" id="chk_yyyymmdd"' + (chk_yyyymmdd ? ' checked="checked"' : '') + '>';
+	html_manual_tags += '日付を「YYYY.mm.dd」フォーマットにする';
+	html_manual_tags += '</label>';
+	html_manual_tags += '</div>';
 
-		html_manual_tags += '<div>';
+	html_manual_tags += '<div>';
+	html_manual_tags += '<label for="chk_and_or">';
+	html_manual_tags += '<input type="checkbox" value="chk_and_or" id="chk_and_or"' + (chk_and_or ? ' checked="checked"' : '') + '>';
+	html_manual_tags += 'タグをAND検索にする（チェックなしの場合はOR検索になります）';
+	html_manual_tags += '</label>';
+	html_manual_tags += '</div>';
 
-		// このFor文だと、フォーマッターが働かないみたい。仕方なく別のFor文に変更。
-		// for(let v of set_Manual_Tags.values()){
+	html_manual_tags += '<div>';
+	html_manual_tags += '<label for="chk_tagall">';
+	html_manual_tags += '<input type="checkbox" value="chk_tagall" id="chk_tagall"' + (chk_tagall ? ' checked="checked"' : '') + '>';
+	html_manual_tags += 'すべてチェックする';
+	html_manual_tags += '</label>';
 
-		var array_Manual_Tags = array_Manual_Tags = Array.from(set_Manual_Tags.values()).sort();
+	html_manual_tags += '</div>';
 
-		if (!chk_underbar) {
+	html_manual_tags += '<div>';
 
-			// array_Manual_Tags = Array.from(set_Manual_Tags.values()).sort();
+	// このFor文だと、フォーマッターが働かないみたい。仕方なく別のFor文に変更。
+	// for(let v of set_Manual_Tags.values()){
+
+	var array_Manual_Tags = array_Manual_Tags = Array.from(set_Manual_Tags.values()).sort();
+
+	if (!chk_underbar) {
+
+		// array_Manual_Tags = Array.from(set_Manual_Tags.values()).sort();
+		//
+		// } else {
+
+		var tmp_Manual_Tags = [];
+
+		for (var j = 0; j < array_Manual_Tags.length; j++) {
+
+			if (array_Manual_Tags[j].startsWith('_')) {
+
+				tmp_Manual_Tags.push(array_Manual_Tags[j]);
+
+			}
+
+		}
+
+		array_Manual_Tags = tmp_Manual_Tags;
+
+	}
+
+	// console.log(array_Manual_Tags);
+
+	// $('[id^="chk_tags"]').each(function(index, element) {
+	//
+	// chk_tags[i] = $(this).prop('checked');
+	// // console.log(chk_tags[i]);
+	//
+	// });
+	//
+	// console.log(chk_tags);
+
+	var rm = 0;
+
+	if (array_Manual_Tags.length != 0) {
+
+		while (array_Manual_Tags[rm] !== '') {
+
+			rm++;
+
+			if (rm == array_Manual_Tags.length) {
+
+				break;
+
+			}
+
+		}
+
+		// console.log(rm);
+
+		if (rm !== array_Manual_Tags.length) {
+
+			array_Manual_Tags.splice(rm, 1);
+
+		}
+
+	}
+
+	// cl(array_Manual_Tags);
+
+	// array_Manual_Tags.forEach((item, index) => {
+	//
+	// if(item === '') {
+	//
+	// array_Manual_Tags.splice(index, 1);
+	//
+	// }
+	//
+	// });
+
+	// cl(array_Manual_Tags);
+
+	for (var i = 0; i < array_Manual_Tags.length; i++) {
+
+		if (array_Manual_Tags[i] !== '') {
+
+			html_manual_tags += '<label for="chk_tags_' + (no + 1) + '">';
+			html_manual_tags += '<input type="checkbox" value="chk_tags_' + (no + 1) + '" id="chk_tags_' + (no + 1) + '"' + (chk_tags[no + 1] ? 'checked="checked"' : '') + '>';
+			html_manual_tags += array_Manual_Tags[i];
+			html_manual_tags += '</label>';
+
+			no++;
+
+		}
+
+	}
+
+	html_manual_tags += '</div>';
+
+	$('#manual_tags').html(html_manual_tags);
+
+
+	var arr_checked_tag_name = [];
+
+	$('[id^="chk_tag"]').each(function (index, element) {
+
+		if ($(this).prop('checked')) {
+
+			$(this).parent().addClass('on');
+			$(this).parent().removeClass('off');
+
+			arr_checked_tag_name.push($(this).parent().text());
+
+		} else {
+
+			$(this).parent().removeClass('on');
+			$(this).parent().addClass('off');
+
+		}
+
+	});
+
+	var html_final = '<div class="copy">下の業績リストをコピーする</div>';
+	var references = '';
+
+	// {
+
+	for (var i = 1; i < rowData.length; i++) {
+
+		// console.log(i + '=' + Manual_Tags[i]);
+
+		if (typeof Manual_Tags[i] !== 'undefined') {
+
+			var _Manual_Tags = Manual_Tags[i].split('; ');
+
+			// console.log(_Manual_Tags.length + 'length');
 			//
-			// } else {
+			var class_name = 'reference';
+			var tags_name = '';
 
-			var tmp_Manual_Tags = [];
+			var a_reference = '';
 
-			for (var j = 0; j < array_Manual_Tags.length; j++) {
+			for (var j = 0; j < _Manual_Tags.length; j++) {
 
-				if (array_Manual_Tags[j].startsWith('_')) {
+				// console.log(set_Manual_Tags.indexOf(_Manual_Tags[j]));
 
-					tmp_Manual_Tags.push(array_Manual_Tags[j]);
+				// cl(_Manual_Tags);
 
-				}
+				class_name += '_' + (array_Manual_Tags.indexOf(_Manual_Tags[j]) + 1) + '_';
 
-			}
+				if (_Manual_Tags.length > 0) {
 
-			array_Manual_Tags = tmp_Manual_Tags;
+					if (arr_checked_tag_name.indexOf(_Manual_Tags[j]) == -1) {
 
-		}
+						tags_name += '<div class="off">' + _Manual_Tags[j] + '</div>'
 
-		// console.log(array_Manual_Tags);
+					} else {
 
-		// $('[id^="chk_tags"]').each(function(index, element) {
-		//
-		// chk_tags[i] = $(this).prop('checked');
-		// // console.log(chk_tags[i]);
-		//
-		// });
-		//
-		// console.log(chk_tags);
+						tags_name += '<div class="on">' + _Manual_Tags[j] + '</div>'
 
-		var rm = 0;
-
-		if (array_Manual_Tags.length != 0) {
-
-			while (array_Manual_Tags[rm] !== '') {
-
-				rm++;
-
-				if (rm == array_Manual_Tags.length) {
-
-					break;
+					}
 
 				}
 
 			}
 
-			// console.log(rm);
+			html_final += '<div class="' + class_name + '">';
 
-			if (rm !== array_Manual_Tags.length) {
+			for (var j = 0; j < alignment.length; j++) {
 
-				array_Manual_Tags.splice(rm, 1);
+				//					html_final += generateAlignedReference(alignment[j], i);
+				a_reference += generateAlignedReference(alignment[j], i);
 
 			}
+
+			html_final += '<span>' + a_reference + '</span>';
+			html_final += '<div class="tags">' + tags_name + '</div>';
+			html_final += '</div>';
+
+			references += a_reference;
+
+
+
+			//		console.log(tags_name);
+
+			// html_final += '<div class="' + class_name + '">';
+			// html_final += Author[i];
+			// html_final += Title[i];
+			// html_final += Publication_Title[i];
+			// html_final += Volume[i];
+			// html_final += Pages[i];
+			// html_final += DOI[i];
+			// html_final += '</div>';
 
 		}
 
-		// cl(array_Manual_Tags);
+	}
 
-		// array_Manual_Tags.forEach((item, index) => {
-		//
-		// if(item === '') {
-		//
-		// array_Manual_Tags.splice(index, 1);
-		//
-		// }
-		//
-		// });
+	// cl('Manual_Tags', 'Manual_Tags', Manual_Tags);
 
-		// cl(array_Manual_Tags);
+	html_final += '<textarea id="for_copy"></textarea>'
 
-		for (var i = 0; i < array_Manual_Tags.length; i++) {
+	$('#final').html(html_final);
 
-			if (array_Manual_Tags[i] !== '') {
+	// visual effects
 
-				html_manual_tags += '<label for="chk_tags_' + (no + 1) + '">';
-				html_manual_tags += '<input type="checkbox" value="chk_tags_' + (no + 1) + '" id="chk_tags_' + (no + 1) + '"' + (chk_tags[no + 1] ? 'checked="checked"' : '') + '>';
-				html_manual_tags += array_Manual_Tags[i];
-				html_manual_tags += '</label>';
+	$('[id^="show_"]').each(function (index, element) {
 
-				no++;
+		if ($(this).prop('checked')) {
 
-			}
+			// $(this).parent().parent().parent().find('td').css('background-color',
+			// 'transparent');
+			$(this).parent().parent().parent().addClass('essential');
+			// $(this).parent().parent().parent().css('background-color',
+			// 'yellow');
+
+		} else {
+
+			$(this).parent().parent().parent().removeClass('essential');
 
 		}
 
-		html_manual_tags += '</div>';
+	});
 
-		$('#manual_tags').html(html_manual_tags);
+	var i = 0;
 
+	$('[id^="chk_tags"]').each(function (index, element) {
 
-		var arr_checked_tag_name = [];
+		var chk_no = parseInt($(this).attr('id').split('_')[2]);
+		chk_tags[chk_no] = $(this).prop('checked');
+		// i++;
 
-		$('[id^="chk_tag"]').each(function(index, element) {
+	});
 
-			if ($(this).prop('checked')) {
+	var tno_show = 0;
 
-				$(this).parent().addClass('on');
-				$(this).parent().removeClass('off');
+	$('[class^="reference_"]').each(function (index, element) {
 
-				arr_checked_tag_name.push($(this).parent().text());
+		var c_name = $(this).attr('class');
+		var show;
 
-			} else {
+		// console.log(c_name);
 
-				$(this).parent().removeClass('on');
-				$(this).parent().addClass('off');
+		//			for (var i = 1; i <= chk_tags.length; i++) {
 
-			}
+		switch (chk_and_or) {
 
-		});
+			case true:
 
-		var html_final = '<div class="copy">下の業績リストをコピーする</div>';
-		var references = '';
+				show = true;
 
-		// {
+				for (var i = 1; i <= chk_tags.length; i++) {
 
-		for (var i = 1; i < records.length; i++) {
+					if (chk_tags[i]) {
 
-			// console.log(i + '=' + Manual_Tags[i]);
+						if (c_name.indexOf('_' + (i) + '_') == -1) {
 
-			if (typeof Manual_Tags[i] !== 'undefined') {
-
-				var _Manual_Tags = Manual_Tags[i].split('; ');
-
-				// console.log(_Manual_Tags.length + 'length');
-				//
-				var class_name = 'reference';
-				var tags_name = '';
-
-				var a_reference = '';
-
-				for (var j = 0; j < _Manual_Tags.length; j++) {
-
-					// console.log(set_Manual_Tags.indexOf(_Manual_Tags[j]));
-
-					cl(_Manual_Tags);
-
-					class_name += '_' + (array_Manual_Tags.indexOf(_Manual_Tags[j]) + 1) + '_';
-
-					if (_Manual_Tags.length > 0) {
-
-						if (arr_checked_tag_name.indexOf(_Manual_Tags[j]) == -1) {
-
-							tags_name += '<div class="off">' + _Manual_Tags[j] + '</div>'
-
-						} else {
-
-							tags_name += '<div class="on">' + _Manual_Tags[j] + '</div>'
+							show = false;
 
 						}
 
@@ -516,176 +684,79 @@ function main() {
 
 				}
 
-				html_final += '<div class="' + class_name + '">';
+				break;
 
-				for (var j = 0; j < alignment.length; j++) {
+			case false:
 
-					//					html_final += generateAlignedReference(alignment[j], i);
-					a_reference += generateAlignedReference(alignment[j], i);
+				show = false;
+
+				for (var i = 1; i <= chk_tags.length; i++) {
+
+					if (chk_tags[i]) {
+
+						if (c_name.indexOf('_' + (i) + '_') >= 0) {
+
+							show = true;
+
+						}
+
+					}
 
 				}
 
-				html_final += '<span>' + a_reference + '</span>';
-				html_final += '<div class="tags">' + tags_name + '</div>';
-				html_final += '</div>';
-
-				references += a_reference;
-
-
-
-				//		console.log(tags_name);
-
-				// html_final += '<div class="' + class_name + '">';
-				// html_final += Author[i];
-				// html_final += Title[i];
-				// html_final += Publication_Title[i];
-				// html_final += Volume[i];
-				// html_final += Pages[i];
-				// html_final += DOI[i];
-				// html_final += '</div>';
-
-			}
+				break;
 
 		}
 
-		html_final += '<textarea id="for_copy"></textarea>'
+		if (show) {
+
+			$(this).removeClass('hide').addClass('show');
+			tno_show++;
+
+		} else {
+
+			$(this).addClass('hide').removeClass('show');
+
+		}
+
+	});
+
+	if ($('[class$="show"]').length == 0) {
+
+		html_final = '<div class="SM_BIG">';
+		html_final += '１件もレコードがありません。どれかタグを最低１個選択してください。';
+		html_final += '</div>';
 
 		$('#final').html(html_final);
 
-		// visual effects
-
-		$('[id^="show_"]').each(function(index, element) {
-
-			if ($(this).prop('checked')) {
-
-				// $(this).parent().parent().parent().find('td').css('background-color',
-				// 'transparent');
-				$(this).parent().parent().parent().addClass('essential');
-				// $(this).parent().parent().parent().css('background-color',
-				// 'yellow');
-
-			} else {
-
-				$(this).parent().parent().parent().removeClass('essential');
-
-			}
-
-		});
-
-		var i = 0;
-
-		$('[id^="chk_tags"]').each(function(index, element) {
-
-			var chk_no = parseInt($(this).attr('id').split('_')[2]);
-			chk_tags[chk_no] = $(this).prop('checked');
-			// i++;
-
-		});
-
-		var tno_show = 0;
-
-		$('[class^="reference_"]').each(function(index, element) {
-
-			var c_name = $(this).attr('class');
-			var show;
-
-			// console.log(c_name);
-
-			//			for (var i = 1; i <= chk_tags.length; i++) {
-
-			switch (chk_and_or) {
-
-				case true:
-
-					show = true;
-
-					for (var i = 1; i <= chk_tags.length; i++) {
-
-						if (chk_tags[i]) {
-
-							if (c_name.indexOf('_' + (i) + '_') == -1) {
-
-								show = false;
-
-							}
-
-						}
-
-					}
-
-					break;
-
-				case false:
-
-					show = false;
-
-					for (var i = 1; i <= chk_tags.length; i++) {
-
-						if (chk_tags[i]) {
-
-							if (c_name.indexOf('_' + (i) + '_') >= 0) {
-
-								show = true;
-
-							}
-
-						}
-
-					}
-
-					break;
-
-			}
-
-			if (show) {
-
-				$(this).removeClass('hide').addClass('show');
-				tno_show++;
-
-			} else {
-
-				$(this).addClass('hide').removeClass('show');
-
-			}
-
-		});
-
-		if ($('[class$="show"]').length == 0) {
-
-			html_final = '<div class="SM_BIG">';
-			html_final += '１件もレコードがありません。どれかタグを最低１個選択してください。';
-			html_final += '</div>';
-
-			$('#final').html(html_final);
-
-		}
-
-		$('#error').html('');
-
-		var arr_for_copy = [];
-
-		$('#final [class*="show"] span').each(function(index, element) {
-
-			//			console.log($(this).text());
-			arr_for_copy.push($(this).text());
-
-		});
-
-		$('#for_copy').val(arr_for_copy.join('\r\n'));
-
-	} else {
-
-		$('#proc_02').hide();
-
-		var html_error = '';
-
-		html_error = '<div class="SM_BIG">';
-		html_error += '入力されたデータの中にmanual tagカラムが見当たりません。正しいデータフォーマットで入力されているか、確認してください。';
-		html_error += '</div>';
-
-		$('#error').html(html_error);
-
 	}
+
+	$('#error').html('');
+
+	var arr_for_copy = [];
+
+	$('#final [class*="show"]>span').each(function (index, element) {
+
+		// console.log($(this).text());
+		arr_for_copy.push($(this).text());
+
+	});
+
+	$('#for_copy').val(arr_for_copy.join('\r\n'));
+
+	// } else {
+
+	// 	$('#proc_02').hide();
+
+	// 	var html_error = '';
+
+	// 	html_error = '<div class="SM_BIG">';
+	// 	html_error += '入力されたデータの中にmanual tagカラムが見当たりません。正しいデータフォーマットで入力されているか、確認してください。';
+	// 	html_error += '</div>';
+
+	// 	$('#error').html(html_error);
+
+	// }
 
 	//	console.log(arr_checked_tag_name);
 
@@ -708,9 +779,9 @@ function main() {
 
 }
 
-$(function() {
+$(function () {
 
-	$(document).on('click', '#chk_underbar', function() {
+	$(document).on('click', '#chk_underbar', function () {
 
 		chk_underbar = $(this).prop('checked');
 		chk_tags = [];
@@ -719,7 +790,7 @@ $(function() {
 
 	});
 
-	$(document).on('click', '#chk_initial', function() {
+	$(document).on('click', '#chk_initial', function () {
 
 		chk_initial = $(this).prop('checked');
 		chk_tags = [];
@@ -728,7 +799,7 @@ $(function() {
 
 	});
 
-	$(document).on('click', '#chk_yyyymmdd', function() {
+	$(document).on('click', '#chk_yyyymmdd', function () {
 
 		chk_yyyymmdd = $(this).prop('checked');
 		chk_tags = [];
@@ -737,7 +808,7 @@ $(function() {
 
 	});
 
-	$(document).on('click', '#chk_and_or', function() {
+	$(document).on('click', '#chk_and_or', function () {
 
 		chk_and_or = $(this).prop('checked');
 		chk_tags = [];
@@ -746,13 +817,13 @@ $(function() {
 
 	});
 
-	$(document).on('click', '#chk_tagall', function() {
+	$(document).on('click', '#chk_tagall', function () {
 
 		chk_tagall = $(this).prop('checked');
 
 		if (chk_tagall) {
 
-			$('[id^="chk_tags_"]').each(function(index, element) {
+			$('[id^="chk_tags_"]').each(function (index, element) {
 
 				$(this).prop('checked', true);
 
@@ -768,7 +839,7 @@ $(function() {
 
 		} else {
 
-			$('[id^="chk_tags_"]').each(function(index, element) {
+			$('[id^="chk_tags_"]').each(function (index, element) {
 
 				$(this).prop('checked', false);
 
@@ -800,7 +871,7 @@ $(function() {
 	//
 	// });
 
-	$('[name="template"]').change(function() {
+	$('[name="template"]').change(function () {
 
 		var opt = parseInt($(this).val());
 		// cl(opt);
@@ -843,7 +914,7 @@ $(function() {
 
 		var tr_html = [];
 
-		$('[id^="tr_"]').each(function(index, element) {
+		$('[id^="tr_"]').each(function (index, element) {
 
 			var tr_num = parseInt($(this).attr('id').split('_')[1]);
 			// $(this).prop('checked', tr_html[tr_num]);
@@ -862,49 +933,49 @@ $(function() {
 
 		$('tbody').html(tbody_html);
 
-		$('[id^="show_"]').each(function(index, element) {
+		$('[id^="show_"]').each(function (index, element) {
 
 			var tr_num = parseInt($(this).attr('id').split('_')[1]);
 			$(this).prop('checked', show[tr_num]);
 
 		});
 
-		$('[id^="bold_"]').each(function(index, element) {
+		$('[id^="bold_"]').each(function (index, element) {
 
 			var tr_num = parseInt($(this).attr('id').split('_')[1]);
 			$(this).prop('checked', bold[tr_num]);
 
 		});
 
-		$('[id^="italic_"]').each(function(index, element) {
+		$('[id^="italic_"]').each(function (index, element) {
 
 			var tr_num = parseInt($(this).attr('id').split('_')[1]);
 			$(this).prop('checked', italic[tr_num]);
 
 		});
 
-		$('[id^="underline_"]').each(function(index, element) {
+		$('[id^="underline_"]').each(function (index, element) {
 
 			var tr_num = parseInt($(this).attr('id').split('_')[1]);
 			$(this).prop('checked', underline[tr_num]);
 
 		});
 
-		$('[name^="prefix_"]').each(function(index, element) {
+		$('[name^="prefix_"]').each(function (index, element) {
 
 			var tr_num = parseInt($(this).attr('name').split('_')[1]);
 			$(this).val(prefix[tr_num]);
 
 		});
 
-		$('[name^="suffix_"]').each(function(index, element) {
+		$('[name^="suffix_"]').each(function (index, element) {
 
 			var tr_num = parseInt($(this).attr('name').split('_')[1]);
 			$(this).val(suffix[tr_num]);
 
 		});
 
-		$('[name^="delimiter_"]').each(function(index, element) {
+		$('[name^="delimiter_"]').each(function (index, element) {
 
 			var tr_num = parseInt($(this).attr('name').split('_')[1]);
 			$(this).val(delimiter[tr_num]);
@@ -915,25 +986,25 @@ $(function() {
 
 	});
 
-	$('#data_in_csv').on('keydown keyup keypress change', function() {
+	$('#data_in_csv').on('keydown keyup keypress change', function () {
 
 		main();
 
 	});
 
-	$(document).on('click', '[id^="show_"],[id^="bold_"],[id^="italic_"],[id^="underline_"]', function() {
+	$(document).on('click', '[id^="show_"],[id^="bold_"],[id^="italic_"],[id^="underline_"]', function () {
 
 		main();
 
 	});
 
-	$(document).on('keydown keyup keypress change', '[name^="suffix_"],[name^="bold_"],[name^="delimiter_"]', function() {
+	$(document).on('keydown keyup keypress change', '[name^="suffix_"],[name^="bold_"],[name^="delimiter_"]', function () {
 
 		main();
 
 	});
 
-	$(document).on('click', '[id^="chk_tags_"]', function() {
+	$(document).on('click', '[id^="chk_tags_"]', function () {
 
 		var i = parseInt($(this).attr('id').split('_')[2]);
 
@@ -953,7 +1024,7 @@ $(function() {
 
 	// $('#sortable-table tbody').sortable();
 
-	$(document).on('click', '.copy', function() {
+	$(document).on('click', '.copy', function () {
 
 		$('#for_copy').select();
 
@@ -964,7 +1035,7 @@ $(function() {
 	});
 
 	$('#sortable-table tbody').sortable({
-		update: function() {
+		update: function () {
 			alignment = $(this).sortable("toArray");
 
 			// cl('alignment = ' + alignment);
@@ -974,7 +1045,6 @@ $(function() {
 		}
 
 	});
-
 
 });
 
@@ -1024,7 +1094,7 @@ function generateAlignedReference(tr_xx, i) {
 
 		case __tr_07__:
 
-			column = Date[i];
+			column = dAte[i];
 
 			break;
 
@@ -1066,19 +1136,19 @@ function generateAlignedReference(tr_xx, i) {
 
 		if (bold[tr_num]) {
 
-			ret = '<b>' + ret + '</b>';
+			ret = '<span class="bo">' + ret + '</span>';
 
-		}
+		} else if (italic[tr_num]) {
 
-		if (italic[tr_num]) {
+			ret = '<span class="it">' + ret + '</span>';
 
-			ret = '<i>' + ret + '</i>';
+		} else if (underline[tr_num]) {
 
-		}
+			ret = '<span class="un">' + ret + '</span>';
 
-		if (underline[tr_num]) {
+		} else {
 
-			ret = '<u>' + ret + '</u>';
+			ret = '<span>' + ret + '</span>';
 
 		}
 
@@ -1130,7 +1200,7 @@ var ISSN = [];
 var DOI = [];
 var Url = [];
 var Abstract_Note = [];
-var Date = [];
+var dAte = [];
 var Date_Added = [];
 var Date_Modified = [];
 var Access_Date = [];
@@ -1229,8 +1299,8 @@ function cl(msg, dm) {
 
 }
 
-function cl(msg) {
+function cl(...args) {
 
-	console.log(msg);
+	console.log(args);
 
 }
